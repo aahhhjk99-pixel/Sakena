@@ -327,7 +327,6 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
-<!-- شاشة البداية الإجبارية لفتح قفل الصوت في المتصفح -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
@@ -419,7 +418,6 @@ let selectedCustom = "";
 let audioCtx = null;
 let ambientTimer = null;
 
-// تهيئة نظام الصوت الإجباري عبر المتصفح
 function initAudio() {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -430,7 +428,6 @@ function initAudio() {
   }
 }
 
-// دالة توليد نغمات قوية وواضحة جداً لا يمكن للمتصفح كتمها
 function playBeep(frequency = 440, duration = 0.25, type = 'sine') {
   try {
     initAudio();
@@ -442,7 +439,6 @@ function playBeep(frequency = 440, duration = 0.25, type = 'sine') {
     osc.type = type;
     osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
-    // رفع مستوى الصوت ليكون واضح مئة بالمئة
     gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
 
@@ -454,27 +450,23 @@ function playBeep(frequency = 440, duration = 0.25, type = 'sine') {
   } catch (e) {}
 }
 
-// نغمات تفاعلية للأزرار
 function playClickSound() {
-  playBeep(659.25, 0.15, 'triangle'); // E5
+  playBeep(659.25, 0.15, 'triangle');
 }
 
 function playRevealSound() {
-  playBeep(880.00, 0.4, 'sine'); // A5
+  playBeep(880.00, 0.4, 'sine');
 }
 
-// بدء نغمات هادئة في الخلفية بعد الضغط على الشاشة
 function startAmbientLoop() {
   if (ambientTimer) clearInterval(ambientTimer);
-  const notes = [261.63, 329.63, 392.00, 523.25]; // درجات نغمات مريحة
-  
+  const notes = [261.63, 329.63, 392.00, 523.25];
   ambientTimer = setInterval(() => {
     const randomNote = notes[Math.floor(Math.random() * notes.length)];
     playBeep(randomNote, 2.0, 'sine');
   }, 5000);
 }
 
-// بناء الأزرار (Moods)
 const moodsDiv = document.getElementById("moods");
 MOODS_LIST.forEach(m => {
   const b = document.createElement("button");
@@ -576,11 +568,10 @@ function renderRiver() {
 }
 renderRiver();
 
-// أول ضغطة تفتح قفل الصوت الإجباري في متصفح التليفون
 const tap = document.getElementById("tap");
 tap.addEventListener("click", () => {
   initAudio();
-  playBeep(523.25, 0.4, 'triangle'); // نغمة افتتاحية واضحة
+  playBeep(523.25, 0.4, 'triangle');
   startAmbientLoop();
   tap.classList.add("hidden");
 }, { once: true });
