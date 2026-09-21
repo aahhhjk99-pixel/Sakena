@@ -28,7 +28,7 @@ body{
   overflow-x:hidden;
 }
 
-/* شاشة الترحيب مع زر حقيقي ومضمون النقر */
+/* شاشة الترحيب */
 .tap{
   position:fixed;
   inset:0;
@@ -43,7 +43,7 @@ body{
   transition:opacity .6s ease, visibility .6s ease;
 }
 
-.tap h2{ font-size:26px; font-weight:400; text-align:center; }
+.tap h2{ font-size:24px; font-weight:400; text-align:center; }
 .tap p{ opacity:.5; font-size:14px; text-align:center; }
 
 .enter-btn{
@@ -339,13 +339,13 @@ h1 i{ font-style:italic; }
 
 <body>
 
-<!-- شاشة الترحيب مع زر دخول حقيقي -->
+<!-- شاشة الترحيب بدون كلمة قلبك -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>كيف حال قلبك يا مؤيد؟</h2>
+  <h2>أهلاً بك يا مؤيد في مساحة هدوئك</h2>
   <p>اضغط على الزر أدناه لدخول عالم السكينة وتشغيل مقطوعة البيانو</p>
   <button class="enter-btn" id="enterBtn" type="button">دخول عالم السكينة</button>
 </div>
@@ -361,7 +361,6 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
-<!-- رابط صوتي مضمون ومباشر 100% -->
 <audio id="bgMusic" loop preload="auto">
   <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
 </audio>
