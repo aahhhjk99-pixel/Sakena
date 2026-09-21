@@ -327,9 +327,9 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
-<!-- عنصر الصوت الحقيقي الهادئ (بدون أصوات مزعجة) -->
+<!-- صوت بيانو هادئ ونقي تماماً (مستقر وخالي من الترددات المزعجة) -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=gentle-piano-101569.mp3" type="audio/mpeg">
 </audio>
 
 <div class="tap" id="tap">
@@ -338,7 +338,7 @@ h1 i{ font-style:italic; }
     <div class="breath-dot"></div>
   </div>
   <h2>اضغط هنا لتبدأ رحلة السكينة والبيانو الهادئ</h2>
-  <p>اضغط في أي مكان بالشاشة ليعمل الصوت الحقيقي الصافي</p>
+  <p>اضغط في أي مكان بالشاشة ليعمل الصوت الهادئ الصافي</p>
 </div>
 
 <div class="container">
@@ -521,7 +521,7 @@ const tap = document.getElementById("tap");
 const bgMusic = document.getElementById("bgMusic");
 
 tap.addEventListener("click", () => {
-  bgMusic.volume = 0.4; // صوت هادئ وناعم جداً
+  bgMusic.volume = 0.5; // صوت ناعم ومريح
   bgMusic.play().catch(e => {});
   tap.classList.add("hidden");
 }, { once: true });
