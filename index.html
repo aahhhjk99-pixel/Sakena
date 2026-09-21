@@ -327,13 +327,18 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
+<!-- عنصر الصوت الحقيقي الهادئ (بدون أصوات مزعجة) -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+</audio>
+
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>اضغط هنا لتدخل عالم السكينة بهدوء</h2>
-  <p>اضغط في أي مكان بالشاشة لتبدأ معزوفة البيانو الدافئة</p>
+  <h2>اضغط هنا لتبدأ رحلة السكينة والبيانو الهادئ</h2>
+  <p>اضغط في أي مكان بالشاشة ليعمل الصوت الحقيقي الصافي</p>
 </div>
 
 <div class="container">
@@ -415,80 +420,6 @@ const EXTRA = [
 
 let selectedMood = null;
 let selectedCustom = "";
-let audioCtx = null;
-let pianoTimer = null;
-
-function initAudio() {
-  if (!audioCtx) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioCtx = new AudioContext();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-}
-
-// بيانو حقيقي ناعم ودافئ (تدرج هادئ جداً يمس الروح بدون أي إزعاج)
-function playGentlePiano(freq, duration = 4.5) {
-  try {
-    initAudio();
-    if (!audioCtx) return;
-
-    const now = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'triangle'; // صوت مثلث ناعم وقريب جداً لنغمات البيانو الحالمة
-    osc.frequency.setValueAtTime(freq, now);
-
-    // تدرج صوتي هادئ وبطيء يذوب ببطء
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.linearRampToValueAtTime(0.12, now + 0.15); // ضربة خفيفة جداً
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration); // تلاشي طويل مريح
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start(now);
-    osc.stop(now + duration);
-  } catch (e) {}
-}
-
-// همس خفيف جداً للأزرار (بدون صوت مزعج)
-function playTinyClick() {
-  playGentlePiano(523.25, 1.5); // نغمة C5 ناعمة وخفيفة
-}
-
-function playCardMelody() {
-  // تتابع نغمات هادئ ومؤثر يشبه ترنيمة الطمأنينة
-  const notes = [261.63, 329.63, 392.00, 523.25];
-  notes.forEach((f, i) => {
-    setTimeout(() => playGentlePiano(f, 4.0), i * 400);
-  });
-}
-
-// معزوفة بيانو خلفية متواصلة (ترنيمة هادئة تتردد بسلام كل فترة)
-function startGentlePianoMelody() {
-  if (pianoTimer) clearInterval(pianoTimer);
-
-  // نغمات سلم بيانو دافئ ومريح جداً (C Major)
-  const pianoNotes = [
-    {f: 261.63, d: 5.0}, // C4
-    {f: 329.63, d: 5.5}, // E4
-    {f: 392.00, d: 5.0}, // G4
-    {f: 440.00, d: 6.0}, // A4
-    {f: 349.23, d: 5.0}, // F4
-    {f: 329.63, d: 5.5}, // E4
-  ];
-
-  let step = 0;
-  playGentlePiano(pianoNotes[0].f, pianoNotes[0].d);
-
-  pianoTimer = setInterval(() => {
-    step = (step + 1) % pianoNotes.length;
-    playGentlePiano(pianoNotes[step].f, pianoNotes[step].d);
-  }, 6000); // تداخل هادي جداً كل 6 ثواني باش الودن تنسجم ببطء
-}
 
 const moodsDiv = document.getElementById("moods");
 MOODS_LIST.forEach(m => {
@@ -497,7 +428,6 @@ MOODS_LIST.forEach(m => {
   b.type = "button";
   b.innerHTML = m[0] + " " + m[1];
   b.onclick = () => {
-    playTinyClick();
     document.querySelectorAll(".pill").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     selectedMood = m[0];
@@ -539,18 +469,15 @@ function showAdvice() {
     </div>
   `;
 
-  playCardMelody();
   addRiverItem({ mood: mood, title: item.title, text: item.text, src: item.src });
   document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
 
 function newAdvice() {
-  playTinyClick();
   showAdvice();
 }
 
 function copyCard(button) {
-  playTinyClick();
   const card = button.closest(".card");
   if(!card) return;
   if(navigator.clipboard) {
@@ -562,7 +489,6 @@ function copyCard(button) {
 }
 
 document.getElementById("mainBtn").onclick = () => {
-  playTinyClick();
   showAdvice();
 };
 
@@ -592,10 +518,11 @@ function renderRiver() {
 renderRiver();
 
 const tap = document.getElementById("tap");
+const bgMusic = document.getElementById("bgMusic");
+
 tap.addEventListener("click", () => {
-  initAudio();
-  playGentlePiano(261.63, 5.0);
-  startGentlePianoMelody();
+  bgMusic.volume = 0.4; // صوت هادئ وناعم جداً
+  bgMusic.play().catch(e => {});
   tap.classList.add("hidden");
 }, { once: true });
 </script>
