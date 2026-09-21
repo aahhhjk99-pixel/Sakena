@@ -332,8 +332,8 @@ h1 i{ font-style:italic; }
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>اضغط هنا لتفعيل الصوت ودخول السكينة</h2>
-  <p>اضغط في أي مكان بالشاشة لضمان سماع النغمات بوضوح تام</p>
+  <h2>اضغط هنا لتعيش السكينة وتبدأ معزوفة البيانو</h2>
+  <p>اضغط في أي مكان بالشاشة لتنغمس في الأجواء الحقيقية</p>
 </div>
 
 <div class="container">
@@ -389,7 +389,7 @@ const LIB = {
     { title:"وإذا فرغت فانصب", text:"الفراغ ممكن يكون مساحة تبدأ فيها حاجة تحبها أو تقربك من ربي.", src:"القرآن" }
   ],
   "فرحان":[
-    { title:"لئن شكرتم لأزيدنكم", text:"الله يدوم فرحتك يا مؤيد، وخلي الشكر جزء من الفرحة.", src:"القرآن" }
+    { title:"لئن شكرتم لأزيدنكم", src:"القرآن", text:"الله يدوم فرحتك يا مؤيد، وخلي الشكر جزء من الفرحة." }
   ],
   "مضغوط":[
     { title:"لا يكلف الله نفسا إلا وسعها", text:"مضغوط؟ خذها خطوة خطوة. مش لازم تحل كل شيء في نفس اللحظة.", src:"القرآن" }
@@ -416,7 +416,7 @@ const EXTRA = [
 let selectedMood = null;
 let selectedCustom = "";
 let audioCtx = null;
-let ambientTimer = null;
+let pianoLoopInterval = null;
 
 function initAudio() {
   if (!audioCtx) {
@@ -428,43 +428,81 @@ function initAudio() {
   }
 }
 
-function playBeep(frequency = 440, duration = 0.25, type = 'sine') {
+// محاكي بيانو احترافي حقيقي (يعتمد على طبقات موجية شبيهة بضربات مفاتيح البيانو الحقيقي مع إطالة الصوت ود دفء)
+function playPianoNote(freq, duration = 3.5, intensity = 0.3) {
   try {
     initAudio();
     if (!audioCtx) return;
 
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+    const now = audioCtx.currentTime;
 
-    osc.type = type;
-    osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+    // المذبذب الأساسي (صوت البيانو الدافئ)
+    const osc1 = audioCtx.createOscillator();
+    const osc2 = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
 
-    gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc1.type = 'sine';
+    osc2.type = 'triangle'; // يضيف عمق صوتي للمفاتيح
 
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    osc1.frequency.setValueAtTime(freq, now);
+    osc2.frequency.setValueAtTime(freq, now);
 
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
+    // تدرج صوتي ناعم يشبه اهتزاز وتر البيانو
+    gainNode.gain.setValueAtTime(0.001, now);
+    gainNode.gain.linearRampToValueAtTime(intensity, now + 0.08); // ضربة المفتاح
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + duration); // تلاشي طويل دافئ
+
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + duration);
+    osc2.stop(now + duration);
   } catch (e) {}
 }
 
+// أصوات تفاعلية ناعمة وراقية للأزرار
 function playClickSound() {
-  playBeep(659.25, 0.15, 'triangle');
+  playPianoNote(523.25, 1.2, 0.25); // C5 نغمة خفيفة وراقية
 }
 
 function playRevealSound() {
-  playBeep(880.00, 0.4, 'sine');
+  // تفجير إحساس عميق عند إظهار الحكمة (مقطوعة من ثلاث نغمات متتالية كأنها كورد بيانو ساحر)
+  const now = audioCtx ? audioCtx.currentTime : 0;
+  setTimeout(() => playPianoNote(261.63, 4.0, 0.35), 0);   // C4
+  setTimeout(() => playPianoNote(392.00, 4.0, 0.3), 150);   // G4
+  setTimeout(() => playPianoNote(523.25, 5.0, 0.4), 300);   // C5
 }
 
-function startAmbientLoop() {
-  if (ambientTimer) clearInterval(ambientTimer);
-  const notes = [261.63, 329.63, 392.00, 523.25];
-  ambientTimer = setInterval(() => {
-    const randomNote = notes[Math.floor(Math.random() * notes.length)];
-    playBeep(randomNote, 2.0, 'sine');
-  }, 5000);
+// معزوفة بيانو حقيقية متواصلة (تتألف من تتابعات هادئة ومدروسة بعناية لتنسجم الودن وتلامس الروح)
+function startRealPianoMelody() {
+  if (pianoLoopInterval) clearInterval(pianoLoopInterval);
+
+  // سُلّم نغمات هادئ جداً ومؤثر (C Major / A Minor الدافئة)
+  const melodyNotes = [
+    {f: 261.63, d: 4.0}, // C4
+    {f: 329.63, d: 4.5}, // E4
+    {f: 392.00, d: 4.0}, // G4
+    {f: 440.00, d: 5.0}, // A4
+    {f: 349.23, d: 4.0}, // F4
+    {f: 329.63, d: 4.5}, // E4
+    {f: 293.66, d: 4.0}, // D4
+    {f: 220.00, d: 5.5}  // A3
+  ];
+
+  let index = 0;
+  
+  // تشغيل أول نغمة فوراً
+  playPianoNote(melodyNotes[0].f, melodyNotes[0].d, 0.3);
+  index++;
+
+  pianoLoopInterval = setInterval(() => {
+    const note = melodyNotes[index % melodyNotes.length];
+    playPianoNote(note.f, note.d, 0.28);
+    index++;
+  }, 4200); // إيقاع بطيء وساحر ومريح للاسترخاء التام
 }
 
 const moodsDiv = document.getElementById("moods");
@@ -571,8 +609,8 @@ renderRiver();
 const tap = document.getElementById("tap");
 tap.addEventListener("click", () => {
   initAudio();
-  playBeep(523.25, 0.4, 'triangle');
-  startAmbientLoop();
+  playPianoNote(440.00, 3.0, 0.35); // نغمة ترحيبية عميقة
+  startRealPianoMelody();
   tap.classList.add("hidden");
 }, { once: true });
 </script>
