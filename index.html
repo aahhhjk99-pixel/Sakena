@@ -40,7 +40,7 @@ body{
   flex-direction:column;
   gap:20px;
   padding:20px;
-  transition:opacity .6s ease, visibility .6s ease;
+  transition:opacity .5s ease;
 }
 
 .tap h2{ font-size:24px; font-weight:400; text-align:center; }
@@ -57,16 +57,10 @@ body{
   font-weight:700;
   cursor:pointer;
   box-shadow:0 0 25px rgba(232,230,225,.2);
-  transition:transform .2s ease;
-}
-
-.enter-btn:active{
-  transform:scale(0.95);
 }
 
 .tap.hidden{
   opacity:0;
-  visibility:hidden;
   pointer-events:none;
 }
 
@@ -339,14 +333,14 @@ h1 i{ font-style:italic; }
 
 <body>
 
-<!-- شاشة الترحيب بدون كلمة قلبك -->
+<!-- شاشة الترحيب -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
   <h2>أهلاً بك يا مؤيد في مساحة هدوئك</h2>
-  <p>اضغط على الزر أدناه لدخول عالم السكينة وتشغيل مقطوعة البيانو</p>
+  <p>اضغط على الزر أدناه للدخول</p>
   <button class="enter-btn" id="enterBtn" type="button">دخول عالم السكينة</button>
 </div>
 
@@ -372,7 +366,7 @@ h1 i{ font-style:italic; }
     <div class="breath-dot"></div>
   </div>
 
-  <h1>كيف حال <i>قلبك</i> يا مؤيد؟</h1>
+  <h1>أهلاً بك يا مؤيد في <i>مساحة هدوئك</i></h1>
   <p class="sub">مكتبة فيها أكثر من 500 موعظة من كتب القلوب. اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك.</p>
 
   <div class="moods" id="moods"></div>
@@ -545,15 +539,11 @@ const tap = document.getElementById("tap");
 const enterBtn = document.getElementById("enterBtn");
 const bgMusic = document.getElementById("bgMusic");
 
-enterBtn.addEventListener("click", () => {
+enterBtn.onclick = function() {
+  tap.classList.add("hidden");
   bgMusic.volume = 0.5;
-  bgMusic.play().then(() => {
-    tap.classList.add("hidden");
-  }).catch(err => {
-    console.log("Audio play blocked", err);
-    tap.classList.add("hidden");
-  });
-});
+  bgMusic.play().catch(e => console.log(e));
+};
 </script>
 
 </body>
