@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#0b0e10">
+<title>سكينة الذكية - لمؤيد من أحمد وليد</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  background:#0b0e10;
+  color:#f0ece4;
+  font-family:Amiri,serif;
+  min-height:100vh;
+  overflow-x:hidden
+}
+
+/* الخلفية الهادئة */
+body:before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(75,92,110,.18),transparent 30%),
+    radial-gradient(circle at 85% 45%,rgba(60,78,66,.15),transparent 28%),
+    radial-gradient(circle at 50% 100%,rgba(80,70,52,.12),transparent 35%);
+  animation:ambient 18s ease-in-out infinite alternate
+}
+
+@keyframes ambient{
+  to{
+    transform:scale(1.08) translate(1%,-1%)
+  }
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:90;
+  background:
+    linear-gradient(
+      transparent 50%,
+      rgba(255,255,255,.012) 50%
+    );
+  background-size:100% 4px;
+  opacity:.15
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:18px 24px;
+  font-size:11px;
+  letter-spacing:.25em;
+  opacity:.5;
+  position:relative;
+  z-index:2
+}
+
+.container{
+  max-width:700px;
+  margin:0 auto;
+  padding:10px 22px 180px;
+  text-align:center
+}
+
+.hero{
+  padding-top:10px
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:.25em;
+  opacity:.38;
+  margin-bottom:14px
+}
+
+h1{
+  font-size:clamp(35px,8vw,58px);
+  font-weight:400;
+  line-height:1.35;
+  margin-bottom:8px
+}
+
+.hero-sub{
+  opacity:.65;
+  font-size:17px;
+  line-height:2;
+  max-width:570px;
+  margin:0 auto 20px
+}
+
+/* دائرة التنفس */
+.breath{
+  width:74px;
+  height:74px;
+  margin:22px auto;
+  border:1px solid rgba(240,236,228,.14);
+  border-radius:50%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+.breath:before,
+.breath:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(240,236,228,.09);
+  border-radius:50%;
+  inset:8px;
+  animation:pulse 5s ease-in-out infinite
+}
+
+.breath:after{
+  inset:20px;
+  animation-delay:1s
+}
+
+.breath-dot{
+  width:5px;
+  height:5px;
+  background:#f0ece4;
+  border-radius:50%;
+  box-shadow:0 0 18px rgba(240,236,228,.7)
+}
+
+@keyframes pulse{
+  0%,100%{
+    transform:scale(.9);
+    opacity:.35
+  }
+  50%{
+    transform:scale(1.18);
+    opacity:.9
+  }
+}
+
+/* الإحصائيات */
+.stats{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin:4px 0 18px;
+  flex-wrap:wrap
+}
+
+.stat{
+  background:rgba(240,236,228,.055);
+  border:1px solid rgba(240,236,228,.11);
+  border-radius:100px;
+  padding:7px 14px;
+  font-size:11px;
+  backdrop-filter:blur(10px)
+}
+
+/* المشاعر */
+.moods{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  justify-content:center;
+  margin-bottom:20px
+}
+
+.pill{
+  padding:11px 18px;
+  border-radius:100px;
+  border:1px solid rgba(240,236,228,.13);
+  background:rgba(240,236,228,.045);
+  color:#f0ece4;
+  font-family:Amiri;
+  font-size:14.5px;
+  cursor:pointer;
+  transition:.25s
+}
+
+.pill:hover{
+  transform:translateY(-2px);
+  border-color:rgba(240,236,228,.3)
+}
+
+.pill.active{
+  background:#f0ece4;
+  color:#0b0e10;
+  transform:scale(1.04);
+  box-shadow:0 8px 30px rgba(240,236,228,.12)
+}
+
+/* الإدخال */
+.input-wrap{
+  margin:18px auto;
+  max-width:480px
+}
+
+input{
+  width:100%;
+  background:rgba(240,236,228,.055);
+  border:1px solid rgba(240,236,228,.12);
+  border-radius:100px;
+  padding:15px 22px;
+  color:#f0ece4;
+  text-align:center;
+  font-family:Amiri;
+  font-size:15px;
+  outline:none;
+  transition:.25s
+}
+
+input:focus{
+  border-color:rgba(240,236,228,.35);
+  box-shadow:0 0 25px rgba(240,236,228,.05)
+}
+
+/* الزر الرئيسي */
+.main-btn{
+  margin-top:12px;
+  background:#f0ece4;
+  color:#0b0e10;
+  border:none;
+  border-radius:100px;
+  padding:15px 34px;
+  font-family:Amiri;
+  font-size:16.5px;
+  font-weight:700;
+  cursor:pointer;
+  opacity:.25;
+  pointer-events:none;
+  transition:.3s
+}
+
+.main-btn.on{
+  opacity:1;
+  pointer-events:auto;
+  box-shadow:0 10px 35px rgba(240,236,228,.16)
+}
+
+/* بطاقة الرسالة */
+.card{
+  margin-top:32px;
+  background:#fdfbf7;
+  color:#1e1e1c;
+  border-radius:22px;
+  padding:28px 24px;
+  text-align:right;
+  animation:up .55s ease;
+  box-shadow:0 20px 55px rgba(0,0,0,.2)
+}
+
+@keyframes up{
+  from{
+    opacity:0;
+    transform:translateY(20px)
+  }
+  to{
+    opacity:1;
+    transform:translateY(0)
+  }
+}
+
+.card .label{
+  font-size:11px;
+  letter-spacing:.14em;
+  opacity:.55;
+  margin-bottom:10px
+}
+
+.card h3{
+  font-size:22px;
+  margin-bottom:10px;
+  font-weight:700
+}
+
+.card p{
+  font-size:18px;
+  line-height:2.08
+}
+
+.card .src{
+  margin-top:12px;
+  font-size:11px;
+  opacity:.6
+}
+
+.card-actions{
+  display:flex;
+  gap:9px;
+  margin-top:18px
+}
+
+.mini-btn{
+  flex:1;
+  padding:11px;
+  border-radius:100px;
+  border:1px solid rgba(0,0,0,.11);
+  background:rgba(0,0,0,.045);
+  font-family:Amiri;
+  cursor:pointer;
+  font-size:13px
+}
+
+.mini-btn:hover{
+  background:rgba(0,0,0,.08)
+}
+
+/* نهر الحكمة */
+.river{
+  margin-top:64px;
+  text-align:right
+}
+
+.river-title{
+  font-size:12px;
+  letter-spacing:.2em;
+  opacity:.38;
+  margin-bottom:16px;
+  text-align:center
+}
+
+.river-item{
+  background:rgba(240,236,228,.045);
+  border:1px solid rgba(240,236,228,.09);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:10px;
+  font-size:15px;
+  line-height:1.9;
+  animation:up .5s ease
+}
+
+/* مشغل الصوت */
+.player{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(18,22,25,.88);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(240,236,228,.12);
+  border-radius:100px;
+  padding:9px 14px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  z-index:20;
+  box-shadow:0 12px 35px rgba(0,0,0,.3)
+}
+
+.player button{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  background:#f0ece4;
+  color:#0b0e10;
+  cursor:pointer
+}
+
+/* شاشة البداية */
+.tap{
+  position:fixed;
+  inset:0;
+  background:rgba(11,14,16,.96);
+  backdrop-filter:blur(18px);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:13px;
+  cursor:pointer;
+  text-align:center;
+  padding:24px
+}
+
+.tap .mini-breath{
+  width:70px;
+  height:70px;
+  border:1px solid rgba(240,236,228,.18);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:pulse 4s ease-in-out infinite
+}
+
+.tap h2{
+  font-size:29px;
+  font-weight:400
+}
+
+.tap p{
+  opacity:.55;
+  line-height:1.9
+}
+
+.tap small{
+  opacity:.3;
+  letter-spacing:.25em
+}
+
+.hidden{
+  display:none!important
+}
+
+.footer{
+  margin-top:58px;
+  opacity:.3;
+  font-size:10.5px;
+  line-height:1.8
+}
+
+.toast{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translate(-50%,-20px);
+  background:rgba(25,29,32,.95);
+  border:1px solid rgba(240,236,228,.12);
+  padding:9px 16px;
+  border-radius:100px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:150
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0
+  }
+}
+
+@media(max-width:520px){
+
+  .topbar{
+    font-size:9px;
+    padding:14px 16px
+  }
+
+  .container{
+    padding-inline:16px
+  }
+
+  .card-actions{
+    flex-wrap:wrap
+  }
+
+  .mini-btn{
+    min-width:30%
+  }
+
+  .player{
+    bottom:12px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <span>SAKINA • 378 رسالة</span>
+  <span>لمؤيد • من أحمد وليد ❤️</span>
+</div>
+
+<div class="tap" id="tap">
+
+  <div class="mini-breath">
+    <div class="breath-dot"></div>
+  </div>
+
+  <h2>سكينة</h2>
+
+  <p>
+    خذ نفساً هادئاً...<br>
+    ثم ادخل.
+  </p>
+
+  <small>TAP TO BEGIN</small>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="container">
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      مكان صغير لقلبك
+    </div>
+
+    <div class="breath">
+      <div class="breath-dot"></div>
+    </div>
+
+    <h1>
+      كيف حال قلبك يا مؤيد؟
+    </h1>
+
+    <p class="hero-sub">
+      مش لازم تشرح كل شيء.
+      اختار إحساسك، وخلي كلمة هادئة توصلك في الوقت المناسب.
+    </p>
+
+  </section>
+
+  <div class="stats">
+
+    <div class="stat" id="statSeen">
+      0 انقالت
+    </div>
+
+    <div class="stat" id="statLeft">
+      378 مازال جديدة
+    </div>
+
+    <div class="stat">
+      منع التكرار ✨
+    </div>
+
+  </div>
+
+  <div class="moods" id="moods"></div>
+
+  <div class="input-wrap">
+
+    <input
+      id="custom"
+      autocomplete="off"
+      placeholder="اكتب اللي في قلبك... أو اكتب: احمد وليد"
+    >
+
+  </div>
+
+  <button class="main-btn" id="mainBtn">
+    اعطيني كلمة تريحني ✨
+  </button>
+
+  <div id="result"></div>
+
+  <div class="river" id="river">
+
+    <h2 class="river-title">
+      نهر الحكمة — ينزل بهدوء
+    </h2>
+
+  </div>
+
+  <div class="footer">
+    سكينة الذكية • بُنيت بحب من أحمد وليد لمؤيد • رسائل فريدة • نظام يمنع التكرار • أحمد وليد رقم 1 دائماً ❤️
+  </div>
+
+</div>
+
+<!-- مشغل الصوت -->
+<div class="player">
+
+  <button id="playBtn">
+    ▶
+  </button>
+
+  <div style="font-size:11px;opacity:.7">
+    Sakina • Piano & Rain
+  </div>
+
+  <button
+    id="muteBtn"
+    style="background:transparent;color:#f0ece4;border:1px solid rgba(240,236,228,.18)"
+  >
+    🔊
+  </button>
+
+</div>
+
+<!-- الأصوات -->
+<audio
+  id="audio1"
+  loop
+  preload="none"
+  src="https://cdn.pixabay.com/audio/2024/09/19/audio_2a8d0e5a3a.mp3">
+</audio>
+
+<audio
+  id="audio2"
+  loop
+  preload="none"
+  src="https://cdn.pixabay.com/audio/2022/06/07/audio_b9bd4170e8.mp3">
+</audio>
+
+<script>
+
+const MOODS = [
+
+  ["متضايق","💔"],
+  ["متوتر","😰"],
+  ["تايه","🧭"],
+  ["فاضي","🌙"],
+  ["فرحان","✨"],
+  ["مضغوط","😮‍💨"],
+  ["وحيد","🫂"],
+  ["غاضب","🔥"],
+  ["مشتاق","💌"],
+  ["ندمان","🤲"]
+
+];
+
+const TITLES = [
+
+  "فإن مع العسر يسرا",
+  "الله خير حافظا",
+  "لا يكلف الله نفسا إلا وسعها",
+  "ونحن أقرب إليه من حبل الوريد",
+  "ومن يتق الله يجعل له مخرجا",
+  "فسيكفيكهم الله",
+  "وإذا فرغت فانصب",
+  "قل يا عبادي الذين أسرفوا",
+  "ألا بذكر الله تطمئن القلوب",
+  "لا تحزن إن الله معنا",
+  "الجرح نور",
+  "هذا سيمر",
+  "أحمد معاك",
+  "أنا معك"
+
+];
+
+const TEXTS = [
+
+  "الضيق اللي انت فيه توا معاه اليسر في نفس اللحظة. ربي قال مع العسر يسرا، مش بعده.",
+
+  "ربي عارفك قدها، وما حطك في هالموقف إلا لأنه عارفك تقدر تتعامل معاه وتطلع منه أقوى.",
+
+  "حتى وانت حاس روحك بروحك، ربي معاك. خذ نفساً، وخلّي قلبك يهدأ شوية.",
+
+  "التايه اللي انت فيه توا مش معناها إن الطريق ضاع. مرات تحتاج توقف شوية باش تشوفه أوضح.",
+
+  "فسيكفيكهم الله وهو السميع العليم. ربي سامع قلقك، وما يخفى عليه شيء من اللي في قلبك.",
+
+  "الفراغ مش دائماً فراغ. مرات يكون مساحة ترجع فيها لنفسك ولربي بهدوء.",
+
+  "التائب من الذنب كمن لا ذنب له. الغلط مش نهاية الطريق، والبداية الجديدة دائماً ممكنة.",
+
+  "ألا بذكر الله تطمئن القلوب. خذ دقيقة هدوء، واذكر الله بالطريقة اللي تقدر عليها.",
+
+  "لا تحزن إن الله معنا. مش كل لحظة صعبة لازم تفهمها توا؛ بعضها يتوضح مع الوقت.",
+
+  "الجرح لا يلغي قيمتك. خليه يعلّمك، مش يعرّفك.",
+
+  "هذا سيمر. زي ما مر اللي قبله واللي قبله. مش كل شيء يبقى كما هو.",
+
+  "يا مؤيد، حتى وانت متضايق، تذكر إن فيه ناس تحبك وتبي تشوفك بخير.",
+
+  "عمرك ما كنت بروحك. حتى لو الدنيا سكتت، باب الكلام والرجوع والراحة ما يتسكرش.",
+
+  "كل تأخيرة فيها حكمة ممكن ما تشوفهاش توا. خذ يومك خطوة خطوة.",
+
+  "اعقلها وتوكل. دير اللي عليك، وخلي اللي خارج قدرتك على الله.",
+
+  "لا حول ولا قوة إلا بالله. كررها بهدوء وخلي نفسك تأخذ فرصة تهدأ.",
+
+  "حسبنا الله ونعم الوكيل. سلم الأمر لله وخذ بالأسباب اللي تقدر عليها.",
+
+  "الله أكبر من همك، وأكبر من قلقك، وأكبر من كل شيء مضايقك.",
+
+  "الصبر مش معناه إنك ما تتعبش؛ معناه إنك تكمل رغم التعب بطريقة رحيمة بنفسك.",
+
+  "ارفع يدك وادعُ. أحياناً أبسط دعاء يفتح مساحة كبيرة في القلب.",
+
+  "سلمها لله وارتاح. مش لازم تعرف كيف حتنحل من توا.",
+
+  "الفرج ممكن يكون أقرب مما تتخيل، لكن خليك مع يومك الحالي ولا تحمل بكرة كله.",
+
+  "راحة القلب في الرضا والسعي معاً: اعمل اللي تقدر عليه، وارضَ بما لا تقدر تغييره.",
+
+  "الصلاة مش مجرد واجب؛ ممكن تكون محطة هدوء ترجع فيها لنفسك.",
+
+  "الاستغفار يذكرك إن باب الرجوع مفتوح دائماً.",
+
+  "لا ينساك الله. وحتى لو ما فهمتش اللي يصير توا، هذا لا يعني إنك متروك.",
+
+  "انت مش متأخر. لكل شخص وقته وطريقه، وما يحتاجش تقارن بدايتك بنهاية غيرك."
+
+];
+
+const SRCS = [
+
+  "القرآن - الشرح",
+  "القرآن - البقرة",
+  "القرآن - الطلاق",
+  "ابن القيم",
+  "الرومي",
+  "حديث نبوي",
+  "حكمة",
+  "أحمد وليد"
+
+];
+
+const moodsDiv =
+  document.getElementById("moods");
+
+let selectedMood = null;
+
+
+/* إنشاء أزرار المشاعر */
+
+MOODS.forEach(m => {
+
+  const b =
+    document.createElement("button");
+
+  b.className = "pill";
+
+  b.textContent =
+    m[0] + " " + m[1];
+
+  b.onclick = () => {
+
+    document
+      .querySelectorAll(".pill")
+      .forEach(x =>
+        x.classList.remove("active")
+      );
+
+    b.classList.add("active");
+
+    selectedMood = m[0];
+
+    document
+      .getElementById("mainBtn")
+      .classList.add("on");
+
+  };
+
+  moodsDiv.appendChild(b);
+
+});
+
+
+/* الكتابة اليدوية */
+
+document
+  .getElementById("custom")
+  .addEventListener("input", e => {
+
+    if(e.target.value.trim()){
+
+      selectedMood =
+        e.target.value.trim();
+
+      document
+        .getElementById("mainBtn")
+        .classList.add("on");
+
+    }
+
+  });
+
+
+/* 14 عنوان × 27 رسالة = 378 */
+
+const TOTAL =
+  TITLES.length * TEXTS.length;
+
+
+/* نخلي مفتاح التخزين القديم حتى لا تضيع الرسائل المحفوظة */
+
+const KEY =
+  "sakina_v4_smart";
+
+let seen =
+  new Set();
+
+
+try{
+
+  const saved =
+    localStorage.getItem(KEY);
+
+  if(saved){
+
+    seen =
+      new Set(
+        JSON.parse(saved)
+      );
+
+  }
+
+}catch(e){}
+
+
+function updateStats(){
+
+  const left =
+    Math.max(
+      0,
+      TOTAL - seen.size
+    );
+
+  document
+    .getElementById("statSeen")
+    .textContent =
+      seen.size + " انقالت";
+
+  document
+    .getElementById("statLeft")
+    .textContent =
+      left + " مازال جديدة";
+
+}
+
+
+function save(){
+
+  try{
+
+    localStorage.setItem(
+      KEY,
+      JSON.stringify([...seen])
+    );
+
+  }catch(e){}
+
+  updateStats();
+
+}
+
+
+updateStats();
+
+
+/* اختيار رسالة غير مستخدمة */
+
+function getUnique(){
+
+  if(seen.size >= TOTAL){
+
+    seen.clear();
+
+    save();
+
+    showToast(
+      "خلصت المجموعة كاملة ✨ بدأنا دورة جديدة"
+    );
+
+  }
+
+  let r;
+
+  do{
+
+    r =
+      Math.floor(
+        Math.random() * TOTAL
+      );
+
+  }while(
+    seen.has(r)
+  );
+
+
+  seen.add(r);
+
+  save();
+
+
+  const ti =
+    Math.floor(
+      r / TEXTS.length
+    ) % TITLES.length;
+
+  const tx =
+    r % TEXTS.length;
+
+
+  return {
+
+    title:
+      TITLES[ti],
+
+    text:
+      TEXTS[tx],
+
+    src:
+      SRCS[
+        r % SRCS.length
+      ],
+
+    id:
+      r + 1
+
+  };
+
+}
+
+
+/* رسالة عشوائية للنهر بدون استهلاك واحدة من الـ378 */
+
+function getRiverMessage(){
+
+  return {
+
+    title:
+      TITLES[
+        Math.floor(
+          Math.random() *
+          TITLES.length
+        )
+      ],
+
+    text:
+      TEXTS[
+        Math.floor(
+          Math.random() *
+          TEXTS.length
+        )
+      ],
+
+    src:
+      SRCS[
+        Math.floor(
+          Math.random() *
+          SRCS.length
+        )
+      ],
+
+    id:
+      "—"
+
+  };
+
+}
+
+
+/* حماية النص */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(
+      /[&<>"']/g,
+      ch => ({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[ch])
+    );
+
+}
+
+
+/* وضع أحمد الخاص */
+
+function isAhmed(text){
+
+  const s =
+    String(text).toLowerCase();
+
+  return (
+
+    s.includes("احمد وليد") ||
+    s.includes("أحمد وليد") ||
+    s.trim() === "احمد" ||
+    s.trim() === "أحمد" ||
+    s.includes("ahmed")
+
+  );
+
+}
+
+
+/* التنبيه الصغير */
+
+function showToast(message){
+
+  const t =
+    document.getElementById("toast");
+
+  t.textContent =
+    message;
+
+  t.classList.add("show");
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      () =>
+        t.classList.remove("show"),
+      2200
+    );
+
+}
+
+
+/* رسالة أحمد الخاصة */
+
+function showSecret(){
+
+  document
+    .getElementById("result")
+    .insertAdjacentHTML(
+      "beforeend",
+
+      `
+
+      <div
+        class="card"
+        style="
+          text-align:center;
+          background:#f0ece4;
+          margin-top:16px
+        "
+      >
+
+        <h3>
+          أحمد وليد دائماً رقم 1 في قلب مؤيد، وروعة رقم 2 باحترام 😂❤️
+        </h3>
+
+        <p>
+          اكتشفت السر!
+          هذه رسالة خاصة كتبت لك بكل حب يا مؤيد.
+          انت صاحب غالي ما يتعوضش.
+        </p>
+
+        <div class="src">
+          — أحمد وليد • سكينة الذكية • رقم 1 دائماً
+        </div>
+
+      </div>
+
+      `
+    );
+
+
+  /* كونفيتي هادئ */
+
+  for(
+    let i = 0;
+    i < 24;
+    i++
+  ){
+
+    setTimeout(() => {
+
+      const d =
+        document.createElement("div");
+
+      d.style.cssText =
+        "position:fixed;" +
+        "left:" +
+        Math.random() * 100 +
+        "%;" +
+        "top:-10px;" +
+        "width:7px;" +
+        "height:7px;" +
+        "border-radius:50%;" +
+        "z-index:200;" +
+        "animation:fall 2.5s linear forwards";
+
+      d.style.background =
+        [
+          "#f0ece4",
+          "#d6c6a4",
+          "#a8c8d8"
+        ][
+          Math.floor(
+            Math.random() * 3
+          )
+        ];
+
+      document.body
+        .appendChild(d);
+
+      setTimeout(
+        () => d.remove(),
+        2600
+      );
+
+    }, i * 65);
+
+  }
+
+}
+
+
+/* عرض الرسالة */
+
+function showAdvice(mood){
+
+  const it =
+    getUnique();
+
+
+  if(isAhmed(mood)){
+
+    document
+      .getElementById("result")
+      .innerHTML = `
+
+      <div class="card">
+
+        <div class="label">
+          رسالة خاصة • من أحمد وليد •
+          ${seen.size}/${TOTAL}
+        </div>
+
+        <h3>
+          يا مؤيد يا غالي
+        </h3>
+
+        <p>
+          كتبت اسمي؟
+          معناها تتذكرني.
+          أنا معاك يا مؤيد.
+          ${escapeHtml(it.text)}
+        </p>
+
+        <div class="src">
+          — أحمد وليد •
+          ${escapeHtml(it.src)}
+        </div>
+
+        <div class="card-actions">
+
+          <button
+            class="mini-btn"
+            onclick="showAdvice('احمد وليد')"
+          >
+            كلمة ثانية فريدة ↻
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    showSecret();
+
+    document
+      .getElementById("result")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+    return;
+
+  }
+
+
+  const safeMood =
+    escapeHtml(mood);
+
+
+  document
+    .getElementById("result")
+    .innerHTML = `
+
+    <div class="card">
+
+      <div class="label">
+
+        ${safeMood} •
+        ${seen.size}/${TOTAL} •
+        #${it.id} •
+        فريدة
+
+      </div>
+
+      <h3>
+        ${escapeHtml(it.title)}
+      </h3>
+
+      <p>
+        ${escapeHtml(it.text)}
+      </p>
+
+      <div class="src">
+        — ${escapeHtml(it.src)}
+      </div>
+
+      <div class="card-actions">
+
+        <button
+          class="mini-btn"
+          id="againBtn"
+        >
+          كلمة ثانية فريدة ↻
+        </button>
+
+        <button
+          class="mini-btn"
+          id="copyBtn"
+        >
+          نسخ
+        </button>
+
+        <button
+          class="mini-btn"
+          id="resetBtn"
+        >
+          صفر العداد 🔄
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("againBtn")
+    .onclick =
+      () => showAdvice(mood);
+
+
+  document
+    .getElementById("copyBtn")
+    .onclick =
+      async () => {
+
+        const text =
+          document
+            .querySelector(
+              "#result .card"
+            )
+            .innerText;
+
+        try{
+
+          await navigator
+            .clipboard
+            .writeText(text);
+
+          document
+            .getElementById("copyBtn")
+            .textContent =
+              "تم ✓";
+
+          showToast(
+            "اننسخت الرسالة"
+          );
+
+        }catch(e){
+
+          showToast(
+            "النسخ غير متاح في المتصفح هذا"
+          );
+
+        }
+
+      };
+
+
+  document
+    .getElementById("resetBtn")
+    .onclick =
+      () => {
+
+        if(
+          confirm(
+            "متأكد تبي تصفر عداد الرسائل؟"
+          )
+        ){
+
+          seen.clear();
+
+          save();
+
+          document
+            .getElementById("result")
+            .innerHTML = "";
+
+          showToast(
+            "رجعنا من البداية"
+          );
+
+        }
+
+      };
+
+
+  document
+    .getElementById("result")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+}
+
+
+/* الزر الرئيسي */
+
+document
+  .getElementById("mainBtn")
+  .onclick =
+    () => {
+
+      if(selectedMood){
+
+        showAdvice(
+          selectedMood
+        );
+
+      }
+
+    };
+
+
+/* نهر الحكمة */
+
+function addToRiver(){
+
+  const river =
+    document.getElementById("river");
+
+  /*
+    مهم:
+    النهر لا يستهلك من الـ378
+  */
+
+  const it =
+    getRiverMessage();
+
+  const mood =
+    MOODS[
+      Math.floor(
+        Math.random() *
+        MOODS.length
+      )
+    ][0];
+
+
+  const r =
+    document.createElement("div");
+
+  r.className =
+    "river-item";
+
+
+  r.innerHTML = `
+
+    <div
+      style="
+        font-size:10px;
+        opacity:.5;
+        margin-bottom:6px
+      "
+    >
+      ${escapeHtml(mood)}
+    </div>
+
+    <b>
+      ${escapeHtml(it.title)}
+    </b>
+
+    <br>
+
+    ${escapeHtml(it.text)}
+
+    <div
+      style="
+        font-size:11px;
+        opacity:.5;
+        margin-top:8px
+      "
+    >
+      — ${escapeHtml(it.src)}
+    </div>
+
+  `;
+
+
+  river.appendChild(r);
+
+
+  while(
+    river.querySelectorAll(
+      ".river-item"
+    ).length > 8
+  ){
+
+    river
+      .querySelector(
+        ".river-item"
+      )
+      ?.remove();
+
+  }
+
+}
+
+
+/* أول 4 رسائل في النهر لا تحسب */
+
+for(
+  let i = 0;
+  i < 4;
+  i++
+){
+
+  const river =
+    document.getElementById("river");
+
+  const it =
+    getRiverMessage();
+
+  const mood =
+    MOODS[
+      Math.floor(
+        Math.random() *
+        MOODS.length
+      )
+    ][0];
+
+
+  const r =
+    document.createElement("div");
+
+  r.className =
+    "river-item";
+
+
+  r.innerHTML = `
+
+    <div
+      style="
+        font-size:10px;
+        opacity:.5;
+        margin-bottom:6px
+      "
+    >
+      ${escapeHtml(mood)}
+    </div>
+
+    <b>
+      ${escapeHtml(it.title)}
+    </b>
+
+    <br>
+
+    ${escapeHtml(it.text)}
+
+    <div
+      style="
+        font-size:11px;
+        opacity:.5;
+        margin-top:8px
+      "
+    >
+      — ${escapeHtml(it.src)}
+    </div>
+
+  `;
+
+
+  river.appendChild(r);
+
+}
+
+
+/* =========================
+   الصوت
+========================= */
+
+const tap =
+  document.getElementById("tap");
+
+const a1 =
+  document.getElementById("audio1");
+
+const a2 =
+  document.getElementById("audio2");
+
+let playing =
+  false;
+
+
+/* عند فتح الموقع */
+
+function startAudio(){
+
+  tap.classList.add("hidden");
+
+  a1.volume = .25;
+  a2.volume = .08;
+
+
+  Promise
+    .allSettled([
+      a1.play(),
+      a2.play()
+    ])
+    .then(results => {
+
+      playing =
+        results.some(
+          r =>
+            r.status === "fulfilled"
+        );
+
+      document
+        .getElementById("playBtn")
+        .textContent =
+          playing
+            ? "⏸"
+            : "▶";
+
+    });
+
+}
+
+
+tap.onclick =
+  startAudio;
+
+
+/* تشغيل وإيقاف */
+
+document
+  .getElementById("playBtn")
+  .onclick =
+    () => {
+
+      if(!playing){
+
+        Promise
+          .allSettled([
+            a1.play(),
+            a2.play()
+          ])
+          .then(results => {
+
+            playing =
+              results.some(
+                r =>
+                  r.status === "fulfilled"
+              );
+
+            document
+              .getElementById("playBtn")
+              .textContent =
+                playing
+                  ? "⏸"
+                  : "▶";
+
+          });
+
+      }else{
+
+        a1.pause();
+        a2.pause();
+
+        playing =
+          false;
+
+        document
+          .getElementById("playBtn")
+          .textContent =
+            "▶";
+
+      }
+
+    };
+
+
+/* كتم الصوت */
+
+document
+  .getElementById("muteBtn")
+  .onclick =
+    e => {
+
+      const muted =
+        a1.muted &&
+        a2.muted;
+
+      a1.muted =
+        !muted;
+
+      a2.muted =
+        !muted;
+
+      e.currentTarget
+        .textContent =
+          muted
+            ? "🔊"
+            : "🔇";
+
+    };
+
+
+/* إضافة رسائل للنهر عند النزول */
+
+let loadingRiver =
+  false;
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if(loadingRiver)
+      return;
+
+    if(
+      window.innerHeight +
+      window.scrollY >=
+      document.body.offsetHeight - 500
+    ){
+
+      loadingRiver =
+        true;
+
+      addToRiver();
+
+      setTimeout(
+        () =>
+          loadingRiver = false,
+        800
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
