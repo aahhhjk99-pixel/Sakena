@@ -28,24 +28,47 @@ body{
   overflow-x:hidden;
 }
 
-/* شاشة الترحيب فوق الكل تماماً عشان الضغطة توصل مضمونة */
+/* شاشة الترحيب مع زر حقيقي ومضمون النقر */
 .tap{
   position:fixed;
   inset:0;
   background:#0a0c0e;
-  z-index:9999;
+  z-index:99999;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  gap:16px;
-  cursor:pointer;
+  gap:20px;
+  padding:20px;
   transition:opacity .6s ease, visibility .6s ease;
 }
 
-.tap h2{ font-size:24px; font-weight:400; text-align:center; padding:0 20px; }
-.tap p{ opacity:.5; font-size:14px; }
-.tap.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+.tap h2{ font-size:26px; font-weight:400; text-align:center; }
+.tap p{ opacity:.5; font-size:14px; text-align:center; }
+
+.enter-btn{
+  background:#e8e6e1;
+  color:#0a0c0e;
+  border:none;
+  border-radius:100px;
+  padding:14px 36px;
+  font-family:Amiri;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(232,230,225,.2);
+  transition:transform .2s ease;
+}
+
+.enter-btn:active{
+  transform:scale(0.95);
+}
+
+.tap.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
 
 .aurora{
   position:fixed;
@@ -316,13 +339,15 @@ h1 i{ font-style:italic; }
 
 <body>
 
+<!-- شاشة الترحيب مع زر دخول حقيقي -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>اضغط هنا لدخول عالم السكينة</h2>
-  <p>اضغط في أي مكان بالشاشة لتبدأ مقطوعة البيانو فوراً</p>
+  <h2>كيف حال قلبك يا مؤيد؟</h2>
+  <p>اضغط على الزر أدناه لدخول عالم السكينة وتشغيل مقطوعة البيانو</p>
+  <button class="enter-btn" id="enterBtn" type="button">دخول عالم السكينة</button>
 </div>
 
 <div class="aurora">
@@ -336,6 +361,7 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
+<!-- رابط صوتي مضمون ومباشر 100% -->
 <audio id="bgMusic" loop preload="auto">
   <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
 </audio>
@@ -517,17 +543,18 @@ function renderRiver() {
 renderRiver();
 
 const tap = document.getElementById("tap");
+const enterBtn = document.getElementById("enterBtn");
 const bgMusic = document.getElementById("bgMusic");
 
-tap.addEventListener("click", () => {
+enterBtn.addEventListener("click", () => {
   bgMusic.volume = 0.5;
   bgMusic.play().then(() => {
     tap.classList.add("hidden");
   }).catch(err => {
-    console.log("Audio play blocked or failed", err);
+    console.log("Audio play blocked", err);
     tap.classList.add("hidden");
   });
-}, { once: true });
+});
 </script>
 
 </body>
