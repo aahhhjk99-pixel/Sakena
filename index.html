@@ -553,7 +553,7 @@ h1 i{
 
   <h2>اضغط لتبدأ السكينة</h2>
 
-  <p>أجواء بيانو هادئة بانتظارك</p>
+  <p>بيانو هادئ يسكن القلب بانتظارك</p>
 
 </div>
 
@@ -616,10 +616,33 @@ h1 i{
 
 </div>
 
+<!-- =========================
+     ملفات الصوت المباشرة (بيانو هادئ ونقرات ناعمة)
+========================= -->
+
+<audio
+  id="pianoAudio"
+  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-ambient-111197.mp3"
+  loop
+  preload="auto">
+</audio>
+
+<audio
+  id="clickSound"
+  src="https://actions.google.com/sounds/v1/ui/soft_click.ogg"
+  preload="auto">
+</audio>
+
+<audio
+  id="revealSound"
+  src="https://actions.google.com/sounds/v1/cartoon/soft_chime.ogg"
+  preload="auto">
+</audio>
+
 <script>
 
 /* =========================================================
-   SAKINA - Web Audio API (توليد أصوات بيانو ونقرات تلقائية مضمونة)
+   SAKINA - الكود النهائي مع صوت البيانو الهادئ المباشر
 ========================================================= */
 
 const MOODS_LIST = [
@@ -836,90 +859,12 @@ const EXTRA = [
   }
 ];
 
-const SEEN_KEY = "sakina_seen_messages_v16";
-const RIVER_KEY = "sakina_river_v16";
+const SEEN_KEY = "sakina_seen_messages_v17";
+const RIVER_KEY = "sakina_river_v17";
 
 let selectedMood = null;
 let selectedCustom = "";
 let audioStarted = false;
-let audioCtx = null;
-
-function initAudioContext(){
-  if(!audioCtx){
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if(audioCtx.state === 'suspended'){
-    audioCtx.resume();
-  }
-}
-
-// نظام توليد نغمات بيانو هادئة في الخلفية
-function playAmbientPianoNote(){
-  if(!audioStarted || !audioCtx) return;
-  try{
-    const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // نغمات هادئة (C, D, E, G, A, C)
-    const freq = notes[Math.floor(Math.random() * notes.length)];
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'sine'; // صوت ناعم جداً يشبه البيانو أو العزف الهادئ
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-    gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.5);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 3.5);
-  }catch(e){}
-}
-
-// تشغيل صوت نقرة ناعمة عند الضغط
-function playClick(){
-  try{
-    initAudioContext();
-    if(!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(350, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.08);
-  }catch(e){}
-}
-
-// صوت ناعم ومميز عند ظهور البطاقة أو النكتة
-function playReveal(){
-  try{
-    initAudioContext();
-    if(!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.25);
-    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.3);
-  }catch(e){}
-}
-
-// حلقة لتوليد خلفية موسيقية بيانو هادئة ومستمرة
-setInterval(()=>{
-  if(audioStarted){
-    playAmbientPianoNote();
-  }
-}, 4000);
 
 function readSeen(){
   try{ return JSON.parse(localStorage.getItem(SEEN_KEY) || "[]"); }catch(e){ return []; }
@@ -1258,16 +1203,41 @@ function seedRiver(){
 }
 
 const tap=document.getElementById("tap");
+const pianoAudio=document.getElementById("pianoAudio");
+const clickSound=document.getElementById("clickSound");
+const revealSound=document.getElementById("revealSound");
+
+pianoAudio.volume=0.25;
+clickSound.volume=0.15;
+revealSound.volume=0.20;
 
 async function startAudio(){
   if(audioStarted) return;
   audioStarted=true;
-  initAudioContext();
   tap.classList.add("hidden");
+  try{
+    await pianoAudio.play();
+  }catch(e){}
   playClick();
 }
 
 tap.addEventListener("click", startAudio, {once:true});
+
+function playClick(){
+  try{
+    clickSound.currentTime=0;
+    const p=clickSound.play();
+    if(p) p.catch(()=>{});
+  }catch(e){}
+}
+
+function playReveal(){
+  try{
+    revealSound.currentTime=0;
+    const p=revealSound.play();
+    if(p) p.catch(()=>{});
+  }catch(e){}
+}
 
 seedRiver();
 </script>
