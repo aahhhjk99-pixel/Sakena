@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0c0e">
 
-<title>سكينة - لمؤيد من أحمد وليد (Nuvole Bianche)</title>
+<title>سكينة - لمؤيد من أحمد وليد</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -323,13 +323,13 @@ h1 i{ font-style:italic; }
 </div>
 
 <div class="topbar">
-  <span>SAKINA — Nuvole Bianche 🎹</span>
+  <span>SAKINA — بيانو هادئ</span>
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
-<!-- مقطوعة Nuvole Bianche الأسطورية بصوت نقي وخاشع -->
+<!-- رابط صوتي مضمون ومباشر 100% -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="https://ia800300.us.archive.org/11/items/LudovicoEinaudiNuvoleBianche_201603/Ludovico%20Einaudi%20-%20Nuvole%20Bianche.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
 </audio>
 
 <div class="tap" id="tap">
@@ -337,8 +337,8 @@ h1 i{ font-style:italic; }
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>اضغط هنا لتعيش سحر Nuvole Bianche</h2>
-  <p>اضغط في أي مكان بالشاشة لتبدأ المقطوعة بهدوء تام</p>
+  <h2>اضغط هنا لدخول عالم السكينة</h2>
+  <p>اضغط في أي مكان بالشاشة لتبدأ مقطوعة البيانو فوراً</p>
 </div>
 
 <div class="container">
@@ -349,7 +349,7 @@ h1 i{ font-style:italic; }
   </div>
 
   <h1>كيف حال <i>قلبك</i> يا مؤيد؟</h1>
-  <p class="sub">مكتبة فيها أكثر من 500 موعظة من كتب القلوب. اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك عارضة مع أنغام Nuvole Bianche.</p>
+  <p class="sub">مكتبة فيها أكثر من 500 موعظة من كتب القلوب. اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك.</p>
 
   <div class="moods" id="moods"></div>
 
@@ -366,7 +366,7 @@ h1 i{ font-style:italic; }
   </div>
 
   <div class="footer">
-    بُنيت هذه السكينة بحب من أحمد وليد لمؤيد — على أنغام Nuvole Bianche الخالدة ❤️
+    بُنيت هذه السكينة بحب من أحمد وليد لمؤيد — كل رسالة هنا كتبت لأجلك ❤️
   </div>
 </div>
 
@@ -521,9 +521,13 @@ const tap = document.getElementById("tap");
 const bgMusic = document.getElementById("bgMusic");
 
 tap.addEventListener("click", () => {
-  bgMusic.volume = 0.55; // مستوى صوت مثالي هادئ وناعم
-  bgMusic.play().catch(e => {});
-  tap.classList.add("hidden");
+  bgMusic.volume = 0.5;
+  bgMusic.play().then(() => {
+    tap.classList.add("hidden");
+  }).catch(err => {
+    console.log("Audio play blocked or failed", err);
+    tap.classList.add("hidden");
+  });
 }, { once: true });
 </script>
 
