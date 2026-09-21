@@ -617,32 +617,32 @@ h1 i{
 </div>
 
 <!-- =========================
-     ملفات الصوت
+     ملفات الصوت (روابط مباشرة ومجانية)
 ========================= -->
 
 <audio
   id="music"
-  src="music.mp3"
+  src="https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg"
   loop
   preload="auto">
 </audio>
 
 <audio
   id="rain"
-  src="rain.mp3"
+  src="https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg"
   loop
   preload="auto">
 </audio>
 
 <audio
   id="revealSound"
-  src="reveal.mp3"
+  src="https://actions.google.com/sounds/v1/cartoon/magic_chime.ogg"
   preload="auto">
 </audio>
 
 <audio
   id="clickSound"
-  src="click.mp3"
+  src="https://actions.google.com/sounds/v1/ui/button_click.ogg"
   preload="auto">
 </audio>
 
@@ -650,7 +650,7 @@ h1 i{
 
 /* =========================================================
    SAKINA
-   النسخة الكاملة مع مزحة أحمد وروعة 😂
+   النسخة الكاملة مع الروابط المباشرة للأصوات ومزحة أحمد وروعة
 ========================================================= */
 
 const MOODS_LIST = [
@@ -867,8 +867,8 @@ const EXTRA = [
   }
 ];
 
-const SEEN_KEY = "sakina_seen_messages_v13";
-const RIVER_KEY = "sakina_river_v13";
+const SEEN_KEY = "sakina_seen_messages_v14";
+const RIVER_KEY = "sakina_river_v14";
 
 let selectedMood = null;
 let selectedCustom = "";
@@ -902,7 +902,7 @@ function detectMood(text){
   if(/توتر|متوتر|خايف|خوف|قلق/.test(t)) return "متوتر";
   if(/تايه|ضايع|مش عارف|حاير|حيرة/.test(t)) return "تايه";
   if(/فاضي|ملل|زهقان|زهق/.test(t)) return "فاضي";
-  if(/ضيق|متضايق|حزين|حزن|وجع|موجوج/.test(t)) return "متضايق";
+  if(/ضيق|متضايق|حزين|حزن|وجع|موجوع/.test(t)) return "متضايق";
   return null;
 }
 
@@ -967,7 +967,6 @@ custom.addEventListener("input",e=>{
   }
 });
 
-/* التحقق من اسم أحمد وليد بدون الحاجة لرقم وشباك */
 function isSecretCode(text){
   const clean = text.trim().replace(/\s+/g," ").toLowerCase();
   return clean === "احمد وليد" || clean === "أحمد وليد";
@@ -1001,7 +1000,7 @@ function showAhmedSecret(){
           </button>
           <button
             class="mini-btn"
-            onclick="copyText('أحمد وليد الأول في قلب مؤيد... والتاعية روعة 😂❤️')"
+            onclick="copyText('أحمد وليد الأول في قلب مؤيد... والثانية روعة 😂❤️')"
           >
             نسخ
           </button>
