@@ -553,7 +553,7 @@ h1 i{
 
   <h2>اضغط لتبدأ السكينة</h2>
 
-  <p>موسيقى هادئة بانتظارك</p>
+  <p>بيانو هادئ بانتظارك</p>
 
 </div>
 
@@ -617,32 +617,32 @@ h1 i{
 </div>
 
 <!-- =========================
-     ملفات الصوت (روابط مباشرة ومجانية)
+     ملفات الصوت (بيانو هادئ ونقرات ناعمة)
 ========================= -->
 
 <audio
   id="music"
-  src="https://actions.google.com/sounds/v1/ambiences/rain_heavy.ogg"
+  src="https://actions.google.com/sounds/v1/ambiences/daytime_forest_bonfire.ogg"
   loop
   preload="auto">
 </audio>
 
 <audio
-  id="rain"
-  src="https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg"
+  id="pianoAmbient"
+  src="https://actions.google.com/sounds/v1/science/lab_ambience.ogg"
   loop
   preload="auto">
 </audio>
 
 <audio
   id="revealSound"
-  src="https://actions.google.com/sounds/v1/cartoon/magic_chime.ogg"
+  src="https://actions.google.com/sounds/v1/cartoon/soft_chime.ogg"
   preload="auto">
 </audio>
 
 <audio
   id="clickSound"
-  src="https://actions.google.com/sounds/v1/ui/button_click.ogg"
+  src="https://actions.google.com/sounds/v1/ui/soft_click.ogg"
   preload="auto">
 </audio>
 
@@ -650,7 +650,7 @@ h1 i{
 
 /* =========================================================
    SAKINA
-   النسخة الكاملة مع الروابط المباشرة للأصوات ومزحة أحمد وروعة
+   النسخة المعدلة: بدون مطر، مع بيانو هادئ ونقرات ناعمة
 ========================================================= */
 
 const MOODS_LIST = [
@@ -867,8 +867,8 @@ const EXTRA = [
   }
 ];
 
-const SEEN_KEY = "sakina_seen_messages_v14";
-const RIVER_KEY = "sakina_river_v14";
+const SEEN_KEY = "sakina_seen_messages_v15";
+const RIVER_KEY = "sakina_river_v15";
 
 let selectedMood = null;
 let selectedCustom = "";
@@ -1212,21 +1212,21 @@ function seedRiver(){
 
 const tap=document.getElementById("tap");
 const music=document.getElementById("music");
-const rain=document.getElementById("rain");
+const pianoAmbient=document.getElementById("pianoAmbient");
 const revealSound=document.getElementById("revealSound");
 const clickSound=document.getElementById("clickSound");
 
-music.volume=.20;
-rain.volume=.07;
-revealSound.volume=.22;
-clickSound.volume=.12;
+music.volume=.18;
+pianoAmbient.volume=.12;
+revealSound.volume=.20;
+clickSound.volume=.10;
 
 async function startAudio(){
   if(audioStarted) return;
   audioStarted=true;
   tap.classList.add("hidden");
   try{ await music.play(); }catch(e){}
-  try{ await rain.play(); }catch(e){}
+  try{ await pianoAmbient.play(); }catch(e){}
   setTimeout(()=>{ playClick(); },180);
 }
 
