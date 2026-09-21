@@ -553,7 +553,7 @@ h1 i{
 
   <h2>اضغط لتبدأ السكينة</h2>
 
-  <p>بيانو هادئ يسكن القلب بانتظارك</p>
+  <p>أجواء بيانو صافية وواضحة بانتظارك</p>
 
 </div>
 
@@ -617,12 +617,12 @@ h1 i{
 </div>
 
 <!-- =========================
-     ملفات الصوت المباشرة (بيانو هادئ ونقرات ناعمة)
+     ملفات الصوت الواضحة والمضبوطة (صوت بيانو واضح تماماً)
 ========================= -->
 
 <audio
   id="pianoAudio"
-  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-ambient-111197.mp3"
+  src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=lofi-study-112191.mp3"
   loop
   preload="auto">
 </audio>
@@ -642,7 +642,7 @@ h1 i{
 <script>
 
 /* =========================================================
-   SAKINA - الكود النهائي مع صوت البيانو الهادئ المباشر
+   SAKINA - الكود النهائي مع رفع درجة صوت البيانو ليكون واضحاً وجميلاً
 ========================================================= */
 
 const MOODS_LIST = [
@@ -859,8 +859,8 @@ const EXTRA = [
   }
 ];
 
-const SEEN_KEY = "sakina_seen_messages_v17";
-const RIVER_KEY = "sakina_river_v17";
+const SEEN_KEY = "sakina_seen_messages_v18";
+const RIVER_KEY = "sakina_river_v18";
 
 let selectedMood = null;
 let selectedCustom = "";
@@ -1207,9 +1207,10 @@ const pianoAudio=document.getElementById("pianoAudio");
 const clickSound=document.getElementById("clickSound");
 const revealSound=document.getElementById("revealSound");
 
-pianoAudio.volume=0.25;
-clickSound.volume=0.15;
-revealSound.volume=0.20;
+// تم رفع مستوى الصوت ليصبح واضحاً تماماً وملء الأذن بدون الحاجة للسبيكر القريب
+pianoAudio.volume=0.85;
+clickSound.volume=0.25;
+revealSound.volume=0.35;
 
 async function startAudio(){
   if(audioStarted) return;
