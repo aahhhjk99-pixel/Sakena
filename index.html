@@ -553,7 +553,7 @@ h1 i{
 
   <h2>اضغط لتبدأ السكينة</h2>
 
-  <p>أجواء بيانو صافية وواضحة بانتظارك</p>
+  <p>أجواء بيانو صافية ومرتفعة الصوت بانتظارك</p>
 
 </div>
 
@@ -617,12 +617,13 @@ h1 i{
 </div>
 
 <!-- =========================
-     ملفات الصوت الواضحة والمضبوطة (صوت بيانو واضح تماماً)
+     ملفات الصوت مع مضخم الصوت الأقصى (Boosted Audio)
 ========================= -->
 
 <audio
   id="pianoAudio"
-  src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=lofi-study-112191.mp3"
+  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-111164.mp3"
+  crossorigin="anonymous"
   loop
   preload="auto">
 </audio>
@@ -642,7 +643,7 @@ h1 i{
 <script>
 
 /* =========================================================
-   SAKINA - الكود النهائي مع رفع درجة صوت البيانو ليكون واضحاً وجميلاً
+   SAKINA - كود الصوت المضخم بأعلى طاقة
 ========================================================= */
 
 const MOODS_LIST = [
@@ -859,8 +860,8 @@ const EXTRA = [
   }
 ];
 
-const SEEN_KEY = "sakina_seen_messages_v18";
-const RIVER_KEY = "sakina_river_v18";
+const SEEN_KEY = "sakina_seen_messages_v19";
+const RIVER_KEY = "sakina_river_v19";
 
 let selectedMood = null;
 let selectedCustom = "";
@@ -1207,15 +1208,27 @@ const pianoAudio=document.getElementById("pianoAudio");
 const clickSound=document.getElementById("clickSound");
 const revealSound=document.getElementById("revealSound");
 
-// تم رفع مستوى الصوت ليصبح واضحاً تماماً وملء الأذن بدون الحاجة للسبيكر القريب
-pianoAudio.volume=0.85;
-clickSound.volume=0.25;
-revealSound.volume=0.35;
+let audioCtx = null;
 
 async function startAudio(){
   if(audioStarted) return;
   audioStarted=true;
   tap.classList.add("hidden");
+
+  try {
+    // تضخيم إضافي عن طريق Web Audio API لرفع الصوت لأقصى طاقة ممكنة تجاوزاً لحدود المتصفح
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext){
+      audioCtx = new AudioContext();
+      const source = audioCtx.createMediaElementSource(pianoAudio);
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.value = 2.5; // مضاعفة قوة الصوت 2.5 مرة
+      source.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+    }
+  } catch(e) {}
+
+  pianoAudio.volume = 1.0;
   try{
     await pianoAudio.play();
   }catch(e){}
@@ -1227,6 +1240,7 @@ tap.addEventListener("click", startAudio, {once:true});
 function playClick(){
   try{
     clickSound.currentTime=0;
+    clickSound.volume=0.4;
     const p=clickSound.play();
     if(p) p.catch(()=>{});
   }catch(e){}
@@ -1235,6 +1249,7 @@ function playClick(){
 function playReveal(){
   try{
     revealSound.currentTime=0;
+    revealSound.volume=0.5;
     const p=revealSound.play();
     if(p) p.catch(()=>{});
   }catch(e){}
