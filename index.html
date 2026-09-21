@@ -76,18 +76,34 @@ body{
 .topbar{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:18px 24px;
   font-size:10px;
   letter-spacing:.3em;
-  opacity:.35;
+  opacity:.4;
   position:relative;
   z-index:5;
+}
+
+.audio-box{
+  background:rgba(232,230,225,.06);
+  border:1px solid rgba(232,230,225,.15);
+  border-radius:100px;
+  padding:4px 12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.audio-box audio{
+  height:30px;
+  outline:none;
 }
 
 .container{
   max-width:680px;
   margin:0 auto;
-  padding:20px 20px 140px;
+  padding:10px 20px 140px;
   position:relative;
   z-index:5;
   text-align:center;
@@ -287,25 +303,6 @@ h1 i{ font-style:italic; }
   line-height:1.9;
 }
 
-.tap{
-  position:fixed;
-  inset:0;
-  background:rgba(10,12,14,.96);
-  backdrop-filter:blur(12px);
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:16px;
-  cursor:pointer;
-  transition:opacity .6s ease, visibility .6s ease;
-}
-
-.tap h2{ font-size:24px; font-weight:400; text-align:center; padding:0 20px; }
-.tap p{ opacity:.5; font-size:14px; }
-.tap.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
-
 .footer{
   margin-top:50px;
   opacity:.25;
@@ -323,22 +320,12 @@ h1 i{ font-style:italic; }
 </div>
 
 <div class="topbar">
-  <span>SAKINA — بيانو هادئ</span>
-  <span>لمؤيد • من أحمد وليد</span>
-</div>
-
-<!-- رابط صوتي مضمون ومباشر 100% -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
-</audio>
-
-<div class="tap" id="tap">
-  <div class="breath-wrap">
-    <div class="breath"></div>
-    <div class="breath-dot"></div>
+  <span>SAKINA — لمؤيد من أحمد وليد</span>
+  <div class="audio-box">
+    <audio id="bgMusic" controls loop preload="auto">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
+    </audio>
   </div>
-  <h2>اضغط هنا لدخول عالم السكينة</h2>
-  <p>اضغط في أي مكان بالشاشة لتبدأ مقطوعة البيانو فوراً</p>
 </div>
 
 <div class="container">
@@ -517,18 +504,15 @@ function renderRiver() {
 }
 renderRiver();
 
-const tap = document.getElementById("tap");
-const bgMusic = document.getElementById("bgMusic");
-
-tap.addEventListener("click", () => {
-  bgMusic.volume = 0.5;
-  bgMusic.play().then(() => {
-    tap.classList.add("hidden");
-  }).catch(err => {
-    console.log("Audio play blocked or failed", err);
-    tap.classList.add("hidden");
+// محاولة تشغيل الصوت تلقائياً أول ما الصفحة تفتح
+window.addEventListener('DOMContentLoaded', () => {
+  const bgMusic = document.getElementById("bgMusic");
+  bgMusic.volume = 0.4;
+  bgMusic.play().catch(err => {
+    // لو المتصفح منع التشغيل التلقائي، المشغل قاعد فوق يقدر المستخدم يضغط عليه بضغطة وحدة بسهولة
+    console.log("Auto-play prevented by browser policy, use the audio controls above.");
   });
-}, { once: true });
+});
 </script>
 
 </body>
