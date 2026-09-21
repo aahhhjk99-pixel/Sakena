@@ -340,7 +340,7 @@ h1 i{ font-style:italic; }
     <div class="breath-dot"></div>
   </div>
   <h2>أهلاً بك يا مؤيد في مساحة هدوئك</h2>
-  <p>اضغط على الزر أدناه للدخول</p>
+  <p>اضغط على الزر أدناه للدخول وتشغيل مقطوعة Nuvole Bianche</p>
   <button class="enter-btn" id="enterBtn" type="button">دخول عالم السكينة</button>
 </div>
 
@@ -351,12 +351,13 @@ h1 i{ font-style:italic; }
 </div>
 
 <div class="topbar">
-  <span>SAKINA — بيانو هادئ</span>
+  <span>SAKINA — Nuvole Bianche</span>
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
+<!-- استدعاء ملف الصوت المحلي nuvole.mp3 -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db32a15d66.mp3?filename=soft-piano-100k-111166.mp3" type="audio/mpeg">
+  <source src="nuvole.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -541,8 +542,8 @@ const bgMusic = document.getElementById("bgMusic");
 
 enterBtn.onclick = function() {
   tap.classList.add("hidden");
-  bgMusic.volume = 0.5;
-  bgMusic.play().catch(e => console.log(e));
+  bgMusic.volume = 0.6;
+  bgMusic.play().catch(e => console.log("Audio play prevented:", e));
 };
 </script>
 
