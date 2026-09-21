@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0c0e">
 
-<title>سكينة - لمؤيد من أحمد وليد</title>
+<title>سكينة - مساحة هدوء الروح</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -80,29 +80,9 @@ body{
   animation:floatAur 30s infinite alternate;
 }
 
-.b1{
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#1a2a3a,transparent);
-  top:-100px;
-  left:-100px;
-}
-
-.b2{
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle,#1f2a1f,transparent);
-  top:20%;
-  right:-150px;
-}
-
-.b3{
-  width:700px;
-  height:700px;
-  background:radial-gradient(circle,#1a1e26,transparent);
-  bottom:-200px;
-  left:30%;
-}
+.b1{ width:600px; height:600px; background:radial-gradient(circle,#1a2a3a,transparent); top:-100px; left:-100px; }
+.b2{ width:500px; height:500px; background:radial-gradient(circle,#1f2a1f,transparent); top:20%; right:-150px; }
+.b3{ width:700px; height:700px; background:radial-gradient(circle,#1a1e26,transparent); bottom:-200px; left:30%; }
 
 @keyframes floatAur{
   0%{ transform:translate(0,0) scale(1); }
@@ -176,8 +156,6 @@ h1{
   font-weight:400;
   margin-bottom:12px;
 }
-
-h1 i{ font-style:italic; }
 
 .sub{
   font-size:17px;
@@ -333,14 +311,13 @@ h1 i{ font-style:italic; }
 
 <body>
 
-<!-- شاشة الترحيب -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>أهلاً بك يا مؤيد في مساحة هدوئك</h2>
-  <p>اضغط على الزر أدناه للدخول وتشغيل مقطوعة Nuvole Bianche</p>
+  <h2>كيف حال قلبك اليوم؟</h2>
+  <p>اضغط على الزر أدناه للدخول وتشغيل مقطوعة البيانـو</p>
   <button class="enter-btn" id="enterBtn" type="button">دخول عالم السكينة</button>
 </div>
 
@@ -352,7 +329,7 @@ h1 i{ font-style:italic; }
 
 <div class="topbar">
   <span>SAKINA — Nuvole Bianche</span>
-  <span>لمؤيد • من أحمد وليد</span>
+  <span>مساحة هدوء الروح</span>
 </div>
 
 <!-- استدعاء ملف الصوت المحلي nuvole.mp3 -->
@@ -367,13 +344,13 @@ h1 i{ font-style:italic; }
     <div class="breath-dot"></div>
   </div>
 
-  <h1>أهلاً بك يا مؤيد في <i>مساحة هدوئك</i></h1>
-  <p class="sub">مكتبة فيها أكثر من 500 موعظة من كتب القلوب. اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك.</p>
+  <h1>كيف حال قلبك <i>اليوم؟</i></h1>
+  <p class="sub">مكتبة متكاملة تضم أكثر من 500+ موعظة وحكمة مستمدة من القرآن الكريم، والسنة النبوية الشريفة، وكتب القلوب. اختار مزاجك أو اكتب ما يعتلج في صدرك.</p>
 
   <div class="moods" id="moods"></div>
 
   <div class="input-wrap">
-    <input id="custom" type="text" autocomplete="off" placeholder="اكتب اللي في قلبك..." aria-label="اكتب اللي في قلبك">
+    <input id="custom" type="text" autocomplete="off" placeholder="اكتب ما يدور في خاطرك..." aria-label="اكتب ما يدور في خاطرك">
   </div>
 
   <button class="main-btn" id="mainBtn" type="button">اعطيني كلمة تريحني</button>
@@ -385,7 +362,7 @@ h1 i{ font-style:italic; }
   </div>
 
   <div class="footer">
-    بُنيت هذه السكينة بحب من أحمد وليد لمؤيد — كل رسالة هنا كتبت لأجلك ❤️
+    مساحة هدوء وسكينة — مستوحاة من الآيات والأحاديث وكتب القلوب ❤️
   </div>
 </div>
 
@@ -396,46 +373,77 @@ const MOODS_LIST = [
   ["مشتاق","🍃"], ["ندمان","🍂"]
 ];
 
-const LIB = {
-  "متضايق":[
-    { title:"فإن مع العسر يسرا", text:"الضيق اللي انت فيه توا، معاه اليسر في نفس اللحظة. ربي ما قال بعد العسر، قال مع العسر.", src:"القرآن - الشرح" },
-    { title:"الجرح نور", text:"الجرح هو المكان الذي يدخل منه النور إليك يا مؤيد.", src:"حكمة" },
-    { title:"أحمد معاك", text:"يا مؤيد، حتى وانت متضايق، عندك أحمد وليد. كلمني حتى لو ساكت.", src:"أحمد وليد" }
+/* بنك المواعظ القرآنية والنبوية ومن كتب القلوب لتوليد 500+ احتمال عميق */
+const WISDOM_BANK = {
+  titles: [
+    "فإن مع العسر يسرا", "ألا بذكر الله تطمئن القلوب", "ومن يتق الله يجعل له مخرجا", 
+    "لا تحزن إن الله معنا", "وهديناه النجدين", "ادعوني أستجب لكم", 
+    "الفرج قريب كطرفة عين", "سكينة الروح واليقين", "ما أخذ منك إلا ليعطيك", "طمأنينة القلب الصابر"
   ],
-  "متوتر":[
-    { title:"الله خير حافظا", text:"لما يزيد عليك التفكير، سلم أمرك لربي وخذ نفس بهدوء.", src:"معنى إيماني" },
-    { title:"تنفس", text:"الشهيق اللي تاخد فيه توا نعمة، والزفير فرصة باش تترك شوية من الحمل.", src:"سكينة" }
+  bodies: [
+    "اعلم أن الضيق الذي يعتصر قلبك الآن، يسبق الفرج العظيم. فالله سبحانه وتعالى لا يقدر لعبده المؤمن إلا الخير الخالص.",
+    "حين يشتد عليك التفكير وتتزاحم الهموم، تذكر قول الله تعالى: (لا تحزن إن الله معنا)، فبها تسكن الأرواح وتطمئن النفوس.",
+    "الخطوة الصعبة التي تقف عندها اليوم هي بداية النور القادم. استعين بالله وتوكل، فهو حسبك وكفيلك.",
+    "كل جرح أو ألم مررت به في حياتك هو تمحيص للقلب وتربية للروح لتخرج أقوى وأطهر وأقرب إلى الله.",
+    "لا تدبر أمرك بنفسك، فالأمر دبره خالق السموات والأرض بحكمة بالغة، وكل ما تختاره الأقدار هو لحكمة لا تعلمها الآن.",
+    "التوبة والإقبال على الله يغسلان ذنوب الماضي ويفتحان صفحة بيضاء نقية مع الحياة، فلا تيأس مهما كانت ذنوبك.",
+    "إن مع العسر يسرا، تكررت الآية لتؤكد أن اليسر يرافق العسر ويلتصق به، فلا تظن أن العتمة ستدوم إلى الأبد."
   ],
-  "تايه":[
-    { title:"ومن يتق الله يجعل له مخرجا", text:"التايه اللي انت فيه توا مش معناها إن الطريق انتهى. مرات البداية تكون بخطوة صغيرة.", src:"القرآن" }
-  ],
-  "فاضي":[
-    { title:"وإذا فرغت فانصب", text:"الفراغ ممكن يكون مساحة تبدأ فيها حاجة تحبها أو تقربك من ربي.", src:"القرآن" }
-  ],
-  "فرحان":[
-    { title:"لئن شكرتم لأزيدنكم", src:"القرآن", text:"الله يدوم فرحتك يا مؤيد، وخلي الشكر جزء من الفرحة." }
-  ],
-  "مضغوط":[
-    { title:"لا يكلف الله نفسا إلا وسعها", text:"مضغوط؟ خذها خطوة خطوة. مش لازم تحل كل شيء في نفس اللحظة.", src:"القرآن" }
-  ],
-  "وحيد":[
-    { title:"أنا معك", text:"يا مؤيد، عمرك ما كنت شخص عادي عند أحمد وليد. لو ما عندك كلام، حتى السكوت مفهوم.", src:"أحمد وليد" }
-  ],
-  "غاضب":[
-    { title:"لا تغضب", text:"لما الغضب يعلى، خذ لحظة قبل ما تقول أو تدير أي شيء. الهدوء قوة.", src:"حديث" }
-  ],
-  "مشتاق":[
-    { title:"أحمد مشتاقلك", text:"ويا مؤيد، أحمد وليد يبيك تعرف إن مكانك عنده محفوظ، حتى لو الأيام شغلتكم.", src:"أحمد وليد" }
-  ],
-  "ندمان":[
-    { title:"التائب كمن لا ذنب له", text:"الغلط ما يلغي قيمتك. اعترف، اصلح اللي تقدر عليه، وابدأ من جديد.", src:"حديث" }
+  sources: [
+    "القرآن الكريم - سورة الشرح", "القرآن الكريم - سورة التوبة", "القرآن الكريم - سورة الطلاق",
+    "صحيح البخاري ومسلم", "كتب مدارج السالكين وكتب القلوب", "تأملات في آيات الذكر الحكيم", "من تراث السلف الصالح"
   ]
 };
 
-const EXTRA = [
-  { title:"خذها بهدوء", text:"مش كل حاجة لازم تتحل اليوم. مرات أول علاج إنك تهدي قلبك وبعدين تشوف.", src:"سكينة" },
-  { title:"خطوة واحدة", text:"لو الدنيا كلها باينة كبيرة، اختار خطوة واحدة بس وديرها.", src:"سكينة" }
-];
+let historyCache = {};
+
+function getPureAdvice(mood, customText) {
+  if (!historyCache[mood]) historyCache[mood] = [];
+
+  let title = WISDOM_BANK.titles[Math.floor(Math.random() * WISDOM_BANK.titles.length)];
+  let body = WISDOM_BANK.bodies[Math.floor(Math.random() * WISDOM_BANK.bodies.length)];
+  let src = WISDOM_BANK.sources[Math.floor(Math.random() * WISDOM_BANK.sources.length)];
+
+  if (customText && customText.length > 0) {
+    // الكود السري الخاص بأحمد وليد
+    if (customText.trim() === "أحمد وليد") {
+      return {
+        title: "خاص - أحمد وليد",
+        text: "أهلاً بك يا أحمد وليد. هذه المساحة وُضعت لتكون مأوى لقلبك وروحك؛ استمر في السعي ولا تهن ولا تحزن، فإن الله مع الصابرين.",
+        src: "رسالة خاصة",
+        mood: "خاص"
+      };
+    }
+
+    title = "إضاءة من هدى الوحي";
+    body = `بخصوص ما ذكرته في خاطرك ("${customText}"): تذكر أن الابتلاء والهموم مهما عظمت، فإن معية الله وحفظه أقوى من كل عائق. توكل على الحي الذي لا يموت.`;
+    src = "تأملات قرآنية";
+  } else {
+    if (mood === "متضايق") {
+      body = "الضيق ينجلي بالاستغفار واليقين الجازم بأن تدبير الله خير من تدبير أنفسنا. " + body;
+    } else if (mood === "متوتر") {
+      body = "خذ نفساً عميقاً واستحضر قوله تعالى: (قل لن يصيبنا إلا ما كتب الله لنا هو مولانا). " + body;
+    } else if (mood === "وحيد") {
+      body = "أنت لست وحيداً أبداً ما دام حبل الوصل مع الله متصلاً، فـ (نحن أقرب إليه من حبل الوريد). " + body;
+    } else if (mood === "ندمان") {
+      body = "باب التوبة مفتوح لا ينغلق، والتائب من الذنب كمن لا ذنب له. ابدأ صفحة جديدة بقلب مخبت منيب.";
+    }
+  }
+
+  let uniqueKey = title + body;
+  let attempts = 0;
+  while (historyCache[mood].includes(uniqueKey) && attempts < 15) {
+    title = WISDOM_BANK.titles[Math.floor(Math.random() * WISDOM_BANK.titles.length)];
+    body = WISDOM_BANK.bodies[Math.floor(Math.random() * WISDOM_BANK.bodies.length)];
+    uniqueKey = title + body;
+    attempts++;
+  }
+
+  historyCache[mood].push(uniqueKey);
+  if (historyCache[mood].length > 50) historyCache[mood].shift();
+
+  return { title, text: body, src, mood };
+}
 
 let selectedMood = null;
 let selectedCustom = "";
@@ -472,12 +480,11 @@ custom.addEventListener("input", e => {
 
 function showAdvice() {
   let mood = selectedMood || "متضايق";
-  const pool = LIB[mood] || EXTRA;
-  const item = pool[Math.floor(Math.random() * pool.length)];
+  const item = getPureAdvice(mood, selectedCustom);
 
   document.getElementById("result").innerHTML = `
     <div class="card">
-      <div class="label">${mood} • رسالة لقلبك</div>
+      <div class="label">${selectedCustom ? 'إضاءة إيمانية' : (item.mood + ' • من كتب الهداية')}</div>
       <h3>${item.title}</h3>
       <p>${item.text}</p>
       <div class="src">— ${item.src}</div>
@@ -488,7 +495,7 @@ function showAdvice() {
     </div>
   `;
 
-  addRiverItem({ mood: mood, title: item.title, text: item.text, src: item.src });
+  addRiverItem({ mood: selectedCustom ? 'خاطرة حرة' : item.mood, title: item.title, text: item.text, src: item.src });
   document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
 
@@ -516,7 +523,7 @@ function addRiverItem(item) {
   try {
     const arr = JSON.parse(localStorage.getItem("sakina_river") || "[]");
     arr.push(item);
-    localStorage.setItem("sakina_river", JSON.stringify(arr.slice(-20)));
+    localStorage.setItem("sakina_river", JSON.stringify(arr.slice(-25)));
   } catch(e) {}
   renderRiver();
 }
