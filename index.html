@@ -28,10 +28,6 @@ body{
   overflow-x:hidden;
 }
 
-/* =========================
-   الخلفية الأصلية
-========================= */
-
 .aurora{
   position:fixed;
   inset:0;
@@ -73,18 +69,9 @@ body{
 }
 
 @keyframes floatAur{
-  0%{
-    transform:translate(0,0) scale(1);
-  }
-
-  100%{
-    transform:translate(60px,40px) scale(1.15);
-  }
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(60px,40px) scale(1.15); }
 }
-
-/* =========================
-   الشريط العلوي
-========================= */
 
 .topbar{
   display:flex;
@@ -97,10 +84,6 @@ body{
   z-index:5;
 }
 
-/* =========================
-   المحتوى
-========================= */
-
 .container{
   max-width:680px;
   margin:0 auto;
@@ -109,10 +92,6 @@ body{
   z-index:5;
   text-align:center;
 }
-
-/* =========================
-   دائرة التنفس
-========================= */
 
 .breath-wrap{
   margin:30px auto;
@@ -151,18 +130,9 @@ body{
 }
 
 @keyframes breath{
-  0%,100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.18);
-  }
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.18); }
 }
-
-/* =========================
-   العنوان
-========================= */
 
 h1{
   font-size:clamp(38px,6vw,58px);
@@ -171,9 +141,7 @@ h1{
   margin-bottom:12px;
 }
 
-h1 i{
-  font-style:italic;
-}
+h1 i{ font-style:italic; }
 
 .sub{
   font-size:17px;
@@ -183,10 +151,6 @@ h1 i{
   max-width:520px;
   margin-inline:auto;
 }
-
-/* =========================
-   أزرار المزاج
-========================= */
 
 .moods{
   display:flex;
@@ -205,10 +169,7 @@ h1 i{
   font-family:Amiri;
   font-size:14px;
   cursor:pointer;
-  transition:
-    transform .25s ease,
-    background .25s ease,
-    color .25s ease;
+  transition:transform .25s ease, background .25s ease, color .25s ease;
 }
 
 .pill:hover{
@@ -216,18 +177,10 @@ h1 i{
   background:rgba(232,230,225,.07);
 }
 
-.pill:active{
-  transform:scale(.96);
-}
-
 .pill.active{
   background:#e8e6e1;
   color:#0a0c0e;
 }
-
-/* =========================
-   خانة البحث
-========================= */
 
 .input-wrap{
   margin:18px auto;
@@ -245,21 +198,7 @@ h1 i{
   font-family:Amiri;
   font-size:16px;
   outline:none;
-  transition:.25s ease;
 }
-
-.input-wrap input:focus{
-  border-color:rgba(232,230,225,.2);
-  background:rgba(232,230,225,.06);
-}
-
-.input-wrap input::placeholder{
-  color:rgba(232,230,225,.38);
-}
-
-/* =========================
-   الزر الرئيسي
-========================= */
 
 .main-btn{
   margin-top:12px;
@@ -282,18 +221,6 @@ h1 i{
   pointer-events:auto;
 }
 
-.main-btn.on:hover{
-  transform:translateY(-2px);
-}
-
-.main-btn.on:active{
-  transform:scale(.97);
-}
-
-/* =========================
-   بطاقة الرسالة
-========================= */
-
 .card{
   margin-top:36px;
   background:#fdfbf7;
@@ -306,15 +233,8 @@ h1 i{
 }
 
 @keyframes up{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{ opacity:0; transform:translateY(20px); }
+  to{ opacity:1; transform:translateY(0); }
 }
 
 .card .label{
@@ -324,21 +244,9 @@ h1 i{
   margin-bottom:10px;
 }
 
-.card h3{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.card p{
-  font-size:18px;
-  line-height:2.1;
-}
-
-.card .src{
-  margin-top:12px;
-  font-size:12px;
-  opacity:.5;
-}
+.card h3{ font-size:22px; margin-bottom:10px; }
+.card p{ font-size:18px; line-height:2.1; }
+.card .src{ margin-top:12px; font-size:12px; opacity:.5; }
 
 .card-actions{
   display:flex;
@@ -354,20 +262,7 @@ h1 i{
   background:rgba(0,0,0,.04);
   font-family:Amiri;
   cursor:pointer;
-  transition:.2s;
 }
-
-.mini-btn:hover{
-  background:rgba(0,0,0,.08);
-}
-
-.mini-btn:active{
-  transform:scale(.97);
-}
-
-/* =========================
-   نهر الحكمة
-========================= */
 
 .river{
   margin-top:60px;
@@ -390,19 +285,13 @@ h1 i{
   margin-bottom:10px;
   font-size:15px;
   line-height:1.9;
-  animation:up .5s ease;
 }
-
-/* =========================
-   شاشة البداية
-========================= */
 
 .tap{
   position:fixed;
   inset:0;
-  background:rgba(10,12,14,.9);
+  background:rgba(10,12,14,.92);
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
   z-index:100;
   display:flex;
   align-items:center;
@@ -410,30 +299,12 @@ h1 i{
   flex-direction:column;
   gap:12px;
   cursor:pointer;
-  transition:
-    opacity .6s ease,
-    visibility .6s ease;
+  transition:opacity .6s ease, visibility .6s ease;
 }
 
-.tap h2{
-  font-size:25px;
-  font-weight:400;
-}
-
-.tap p{
-  opacity:.4;
-  font-size:14px;
-}
-
-.tap.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-/* =========================
-   الفوتر
-========================= */
+.tap h2{ font-size:25px; font-weight:400; }
+.tap p{ opacity:.4; font-size:14px; }
+.tap.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
 
 .footer{
   margin-top:50px;
@@ -441,17 +312,12 @@ h1 i{
   font-size:11px;
 }
 
-/* =========================
-   الرسالة السرية
-========================= */
-
 .secret-card{
   margin-top:36px;
   padding:30px 24px;
   border:1px solid rgba(232,230,225,.12);
   border-radius:20px;
   background:rgba(232,230,225,.035);
-  animation:up .7s ease;
 }
 
 .secret-badge{
@@ -463,67 +329,10 @@ h1 i{
   opacity:.45;
   margin-bottom:15px;
 }
-
-.secret-card h3{
-  font-size:27px;
-  margin-bottom:12px;
-}
-
-.secret-card p{
-  font-size:17px;
-  line-height:2.1;
-  color:rgba(232,230,225,.72);
-}
-
-/* =========================
-   تحسين الهاتف
-========================= */
-
-@media(max-width:600px){
-
-  .topbar{
-    padding:15px 14px;
-    font-size:8px;
-    letter-spacing:.15em;
-  }
-
-  .container{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  h1{
-    font-size:40px;
-  }
-
-  .sub{
-    font-size:15px;
-  }
-
-  .pill{
-    padding:9px 15px;
-  }
-
-  .card{
-    padding:23px 20px;
-  }
-
-  .card h3{
-    font-size:20px;
-  }
-
-  .card p{
-    font-size:17px;
-  }
-}
 </style>
 </head>
 
 <body>
-
-<!-- =========================
-     الخلفية
-========================= -->
 
 <div class="aurora">
   <div class="blob b1"></div>
@@ -531,731 +340,268 @@ h1 i{
   <div class="blob b3"></div>
 </div>
 
-<!-- =========================
-     الشريط العلوي
-========================= -->
-
 <div class="topbar">
   <span>SAKINA — 500+ رسالة</span>
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
-<!-- =========================
-     شاشة البداية
-========================= -->
-
 <div class="tap" id="tap">
-
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-
-  <h2>اضغط لتبدأ السكينة</h2>
-
-  <p>أجواء بيانو صافية ومرتفعة الصوت بانتظارك</p>
-
+  <h2>اضغط هنا لبدء السكينة والصوت</h2>
+  <p>أجواء بيانو مسموعة بوضوح وقوة قصوى لأجلك</p>
 </div>
 
-<!-- =========================
-     المحتوى الرئيسي
-========================= -->
-
 <div class="container">
-
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath2"></div>
     <div class="breath-dot"></div>
   </div>
 
-  <h1>
-    كيف حال <i>قلبك</i> يا مؤيد؟
-  </h1>
+  <h1>كيف حال <i>قلبك</i> يا مؤيد؟</h1>
+  <p class="sub">مكتبة فيها أكثر من 500 موعظة من كتب القلوب. اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك.</p>
 
-  <p class="sub">
-    مكتبة فيها أكثر من 500 موعظة من كتب القلوب.
-    اختار مزاجك وخلي الكلمة تجيك على مقاس وجعك.
-  </p>
-
-  <!-- المزاج -->
   <div class="moods" id="moods"></div>
 
-  <!-- البحث -->
   <div class="input-wrap">
-    <input
-      id="custom"
-      type="text"
-      autocomplete="off"
-      placeholder="اكتب اللي في قلبك..."
-      aria-label="اكتب اللي في قلبك"
-    >
+    <input id="custom" type="text" autocomplete="off" placeholder="اكتب اللي في قلبك..." aria-label="اكتب اللي في قلبك">
   </div>
 
-  <!-- الزر -->
-  <button
-    class="main-btn"
-    id="mainBtn"
-    type="button"
-  >
-    اعطيني كلمة تريحني
-  </button>
+  <button class="main-btn" id="mainBtn" type="button">اعطيني كلمة تريحني</button>
 
-  <!-- النتيجة -->
   <div id="result"></div>
 
-  <!-- نهر الحكمة -->
   <div class="river" id="river">
     <h2>نهر الحكمة — لا ينتهي</h2>
   </div>
 
-  <!-- الفوتر -->
   <div class="footer">
     بُنيت هذه السكينة بحب من أحمد وليد لمؤيد — كل رسالة هنا كتبت أو ولدت لأجلك ❤️
   </div>
-
 </div>
 
-<!-- =========================
-     ملفات الصوت مع مضخم الصوت الأقصى (Boosted Audio)
-========================= -->
-
-<audio
-  id="pianoAudio"
-  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-111164.mp3"
-  crossorigin="anonymous"
-  loop
-  preload="auto">
-</audio>
-
-<audio
-  id="clickSound"
-  src="https://actions.google.com/sounds/v1/ui/soft_click.ogg"
-  preload="auto">
-</audio>
-
-<audio
-  id="revealSound"
-  src="https://actions.google.com/sounds/v1/cartoon/soft_chime.ogg"
-  preload="auto">
-</audio>
-
 <script>
-
-/* =========================================================
-   SAKINA - كود الصوت المضخم بأعلى طاقة
-========================================================= */
-
 const MOODS_LIST = [
-  ["متضايق","💔"],
-  ["متوتر","😰"],
-  ["تايه","🧭"],
-  ["فاضي",""],
-  ["فرحان","✨"],
-  ["مضغوط",""],
-  ["وحيد",""],
-  ["غاضب",""],
-  ["مشتاق",""],
-  ["ندمان",""]
+  ["متضايق","💔"], ["متوتر","😰"], ["تايه","🧭"], ["فاضي","☕"],
+  ["فرحان","✨"], ["مضغوط","⚡"], ["وحيد","🌙"], ["غاضب","🔥"],
+  ["مشتاق","🍃"], ["ندمان","🍂"]
 ];
 
 const LIB = {
   "متضايق":[
-    {
-      title:"فإن مع العسر يسرا",
-      text:"الضيق اللي انت فيه توا، معاه اليسر في نفس اللحظة. ربي ما قال بعد العسر، قال مع العسر.",
-      src:"القرآن - الشرح"
-    },
-    {
-      title:"الجرح نور",
-      text:"الجرح هو المكان الذي يدخل منه النور إليك يا مؤيد.",
-      src:"حكمة"
-    },
-    {
-      title:"لا يكلف الله نفسا إلا وسعها",
-      text:"ربي عارفك قدها، وما حطك في هالموقف إلا لأنه عارفك تتحمله.",
-      src:"القرآن"
-    },
-    {
-      title:"أحمد معاك",
-      text:"يا مؤيد، حتى وانت متضايق، عندك أحمد وليد. كلمني حتى لو ساكت.",
-      src:"أحمد وليد"
-    },
-    {
-      title:"هذا سيمر",
-      text:"حتى الضيق هذا، حيمر. زي ما مر اللي قبله.",
-      src:"حكمة"
-    }
+    { title:"فإن مع العسر يسرا", text:"الضيق اللي انت فيه توا، معاه اليسر في نفس اللحظة. ربي ما قال بعد العسر، قال مع العسر.", src:"القرآن - الشرح" },
+    { title:"الجرح نور", text:"الجرح هو المكان الذي يدخل منه النور إليك يا مؤيد.", src:"حكمة" },
+    { title:"أحمد معاك", text:"يا مؤيد، حتى وانت متضايق، عندك أحمد وليد. كلمني حتى لو ساكت.", src:"أحمد وليد" }
   ],
   "متوتر":[
-    {
-      title:"الله خير حافظا",
-      text:"لما يزيد عليك التفكير، سلم أمرك لربي وخذ نفس بهدوء.",
-      src:"معنى إيماني"
-    },
-    {
-      title:"توكل",
-      text:"من توكل على الله كفاه. مش لازم تعرف كل الخطوات من توا.",
-      src:"حكمة"
-    },
-    {
-      title:"سيكفيكهم الله",
-      text:"خلي قلبك يعرف إنك مش مطالب تحمل كل شيء وحدك.",
-      src:"معنى قرآني"
-    },
-    {
-      title:"تنفس",
-      text:"الشهيق اللي تاخد فيه توا نعمة، والزفير فرصة باش تترك شوية من الحمل.",
-      src:"سكينة"
-    }
+    { title:"الله خير حافظا", text:"لما يزيد عليك التفكير، سلم أمرك لربي وخذ نفس بهدوء.", src:"معنى إيماني" },
+    { title:"تنفس", text:"الشهيق اللي تاخد فيه توا نعمة، والزفير فرصة باش تترك شوية من الحمل.", src:"سكينة" }
   ],
   "تايه":[
-    {
-      title:"ومن يتق الله يجعل له مخرجا",
-      text:"التايه اللي انت فيه توا مش معناها إن الطريق انتهى. مرات البداية تكون بخطوة صغيرة.",
-      src:"القرآن"
-    },
-    {
-      title:"البوصلة قلبك",
-      text:"لا تدور برا طول الوقت. اقعد مع نفسك شوية وارجع للشي اللي تعرف إنه صح.",
-      src:"حكمة"
-    },
-    {
-      title:"اهدنا الصراط",
-      text:"كل يوم تقول اهدنا الصراط المستقيم، وخطوة وراء خطوة يوضح الطريق.",
-      src:"القرآن"
-    }
+    { title:"ومن يتق الله يجعل له مخرجا", text:"التايه اللي انت فيه توا مش معناها إن الطريق انتهى. مرات البداية تكون بخطوة صغيرة.", src:"القرآن" }
   ],
   "فاضي":[
-    {
-      title:"وإذا فرغت فانصب",
-      text:"الفراغ ممكن يكون مساحة تبدأ فيها حاجة تحبها أو تقربك من ربي.",
-      src:"القرآن - الشرح"
-    },
-    {
-      title:"املأ قلبك",
-      text:"القلب يحتاج معنى، مش مجرد انشغال. اختار له شيء يبنيك.",
-      src:"حكمة"
-    }
+    { title:"وإذا فرغت فانصب", text:"الفراغ ممكن يكون مساحة تبدأ فيها حاجة تحبها أو تقربك من ربي.", src:"القرآن" }
   ],
   "فرحان":[
-    {
-      title:"لئن شكرتم لأزيدنكم",
-      text:"الله يدوم فرحتك يا مؤيد، وخلي الشكر جزء من الفرحة.",
-      src:"القرآن"
-    },
-    {
-      title:"افرح",
-      text:"الفرحة الصغيرة تستاهل تعيشها كاملة بدون ما تستعجل نهايتها.",
-      src:"حكمة"
-    },
-    {
-      title:"يدوم",
-      text:"الفرح اللي تحس بيه توا، خليه ذكرى حلوة وقوة لأيامك الجاية.",
-      src:"أحمد وليد"
-    }
+    { title:"لئن شكرتم لأزيدنكم", text:"الله يدوم فرحتك يا مؤيد، وخلي الشكر جزء من الفرحة.", src:"القرآن" }
   ],
   "مضغوط":[
-    {
-      title:"لا يكلف الله نفسا إلا وسعها",
-      text:"مضغوط؟ خذها خطوة خطوة. مش لازم تحل كل شيء في نفس اللحظة.",
-      src:"القرآن"
-    },
-    {
-      title:"قسّمها",
-      text:"الجبل ينحت بالضربة مش مرة وحدة. قسم ضغطك إلى أشياء صغيرة تقدر عليها.",
-      src:"حكمة"
-    }
+    { title:"لا يكلف الله نفسا إلا وسعها", text:"مضغوط؟ خذها خطوة خطوة. مش لازم تحل كل شيء في نفس اللحظة.", src:"القرآن" }
   ],
   "وحيد":[
-    {
-      title:"ونحن أقرب إليه من حبل الوريد",
-      text:"حتى وانت حاس روحك بروحك، تذكر إن الله قريب منك.",
-      src:"القرآن"
-    },
-    {
-      title:"أنا معك",
-      text:"يا مؤيد، عمرك ما كنت شخص عادي عند أحمد وليد. لو ما عندك كلام، حتى السكوت مفهوم.",
-      src:"أحمد وليد"
-    }
+    { title:"أنا معك", text:"يا مؤيد، عمرك ما كنت شخص عادي عند أحمد وليد. لو ما عندك كلام، حتى السكوت مفهوم.", src:"أحمد وليد" }
   ],
   "غاضب":[
-    {
-      title:"لا تغضب",
-      text:"لما الغضب يعلى، خذ لحظة قبل ما تقول أو تدير أي شيء. الهدوء قوة.",
-      src:"حديث"
-    },
-    {
-      title:"والكاظمين الغيظ",
-      text:"التحكم في الغضب مش ضعف. مرات أقوى قرار إنك تستنى حتى يهدى قلبك.",
-      src:"القرآن"
-    }
+    { title:"لا تغضب", text:"لما الغضب يعلى، خذ لحظة قبل ما تقول أو تدير أي شيء. الهدوء قوة.", src:"حديث" }
   ],
   "مشتاق":[
-    {
-      title:"الشوق دليل حب",
-      text:"شوقك دليل إن في قلبك مكان لأشخاص وأشياء تعني لك.",
-      src:"حكمة"
-    },
-    {
-      title:"أحمد مشتاقلك",
-      text:"ويا مؤيد، أحمد وليد يبيك تعرف إن مكانك عنده محفوظ، حتى لو الأيام شغلتكم.",
-      src:"أحمد وليد"
-    }
+    { title:"أحمد مشتاقلك", text:"ويا مؤيد، أحمد وليد يبيك تعرف إن مكانك عنده محفوظ، حتى لو الأيام شغلتكم.", src:"أحمد وليد" }
   ],
   "ندمان":[
-    {
-      title:"التائب كمن لا ذنب له",
-      text:"الغلط ما يلغي قيمتك. اعترف، اصلح اللي تقدر عليه، وابدأ من جديد.",
-      src:"حديث"
-    },
-    {
-      title:"قل يا عبادي",
-      text:"رحمة الله أوسع من أخطائك، فلا تحول الندم إلى باب لليأس.",
-      src:"القرآن"
-    }
+    { title:"التائب كمن لا ذنب له", text:"الغلط ما يلغي قيمتك. اعترف، اصلح اللي تقدر عليه، وابدأ من جديد.", src:"حديث" }
   ]
 };
 
 const EXTRA = [
-  {
-    title:"خذها بهدوء",
-    text:"مش كل حاجة لازم تتحل اليوم. مرات أول علاج إنك تهدي قلبك وبعدين تشوف.",
-    src:"سكينة"
-  },
-  {
-    title:"خطوة واحدة",
-    text:"لو الدنيا كلها باينة كبيرة، اختار خطوة واحدة بس وديرها. وبعدها نشوفوا الثانية.",
-    src:"سكينة"
-  },
-  {
-    title:"أنت تسمع نفسك",
-    text:"مجرد إنك كتبت اللي في قلبك معناه إنك وقفت لحظة وسمعت نفسك. وهذه بداية كويسة.",
-    src:"سكينة"
-  },
-  {
-    title:"ربي أقرب",
-    text:"لما تحس إن الكلام كثير في راسك، ارجع للحظة الحالية وخلي قلبك يهدى.",
-    src:"سكينة"
-  },
-  {
-    title:"ما فاتش كل شيء",
-    text:"حتى لو فاتتك حاجات، ما زالت عندك اليوم مساحة تبدأ منها من جديد.",
-    src:"سكينة"
-  },
-  {
-    title:"مش لازم تكون قوي طول الوقت",
-    text:"عادي تتعب، وعادي تقول إنك تعبت. القوة مش معناها إنك ما تحتاجش ترتاح.",
-    src:"سكينة"
-  },
-  {
-    title:"خليها تعدي",
-    text:"مش كل إحساس يحتاج قرار. بعض المشاعر تحتاج فقط وقت ومساحة وهدوء.",
-    src:"سكينة"
-  },
-  {
-    title:"بكرة أوضح",
-    text:"الحاجة اللي باينة مستحيلة وأنت متعب، ممكن تبان أبسط بكثير بعد ما ترتاح.",
-    src:"سكينة"
-  }
+  { title:"خذها بهدوء", text:"مش كل حاجة لازم تتحل اليوم. مرات أول علاج إنك تهدي قلبك وبعدين تشوف.", src:"سكينة" },
+  { title:"خطوة واحدة", text:"لو الدنيا كلها باينة كبيرة، اختار خطوة واحدة بس وديرها.", src:"سكينة" }
 ];
-
-const SEEN_KEY = "sakina_seen_messages_v19";
-const RIVER_KEY = "sakina_river_v19";
 
 let selectedMood = null;
 let selectedCustom = "";
 let audioStarted = false;
+let audioCtx = null;
+let pianoInterval = null;
 
-function readSeen(){
-  try{ return JSON.parse(localStorage.getItem(SEEN_KEY) || "[]"); }catch(e){ return []; }
-}
-
-function saveSeen(arr){
-  try{ localStorage.setItem(SEEN_KEY, JSON.stringify(arr.slice(-700))); }catch(e){}
-}
-
-function hashText(text){
-  let h = 0;
-  for(let i=0;i<text.length;i++){
-    h=((h<<5)-h)+text.charCodeAt(i);
-    h|=0;
+// مولد أصوات البيانو والنغمات برمجياً بقوة عالية جداً ومسموعة مية المية
+function initSynthAudio() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if(!audioCtx) {
+    audioCtx = new AudioContext();
   }
-  return String(h);
-}
-
-function detectMood(text){
-  const t=text.toLowerCase();
-  if(/غضب|عصب|معصب|عصبي|نرفز/.test(t)) return "غاضب";
-  if(/ندم|نادم|غلطت|غلط|ذنب/.test(t)) return "ندمان";
-  if(/اشتاق|مشتاق|وحشني|وحشتني|حنين/.test(t)) return "مشتاق";
-  if(/وحدي|وحيد|بروحي|لوحدي/.test(t)) return "وحيد";
-  if(/فرح|مبسوط|سعيد|فرحان/.test(t)) return "فرحان";
-  if(/ضغط|مضغوط|تعب|مرهق|خنقة/.test(t)) return "مضغوط";
-  if(/توتر|متوتر|خايف|خوف|قلق/.test(t)) return "متوتر";
-  if(/تايه|ضايع|مش عارف|حاير|حيرة/.test(t)) return "تايه";
-  if(/فاضي|ملل|زهقان|زهق/.test(t)) return "فاضي";
-  if(/ضيق|متضايق|حزين|حزن|وجع|موجوع/.test(t)) return "متضايق";
-  return null;
-}
-
-function poolFor(mood,custom){
-  let pool=[];
-  if(mood && LIB[mood]) pool.push(...LIB[mood]);
-  if(custom) pool.push(...EXTRA);
-  if(!pool.length) pool=Object.values(LIB).flat();
-  return pool;
-}
-
-function getUniqueItem(mood,custom){
-  let seen=readSeen();
-  const pool=poolFor(mood,custom);
-  let candidates=pool.filter(item=>{
-    const sig=hashText(item.title+"|"+item.text);
-    return !seen.includes(sig);
-  });
-  if(!candidates.length){
-    candidates=pool;
-    const signatures=pool.map(item=>hashText(item.title+"|"+item.text));
-    seen=seen.filter(x=>!signatures.includes(x));
-    saveSeen(seen);
+  if(audioCtx.state === 'suspended') {
+    audioCtx.resume();
   }
-  const item=candidates[Math.floor(Math.random()*candidates.length)];
-  const sig=hashText(item.title+"|"+item.text);
-  const updated=readSeen();
-  updated.push(sig);
-  saveSeen(updated);
-  return item;
 }
 
-const moodsDiv=document.getElementById("moods");
-MOODS_LIST.forEach(m=>{
-  const b=document.createElement("button");
-  b.className="pill";
-  b.type="button";
-  b.innerHTML=m[0]+" "+m[1];
-  b.onclick=()=>{
-    playClick();
-    document.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
+function playTone(freq, duration = 2.0, type = 'sine') {
+  try {
+    initSynthAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+    // تضخيم الصوت ليكون واضح وقوي جداً
+    gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+
+// تشغيل خلفية نغمات بيانو هادئة ومتسلسلة تلقائياً
+function startAmbientPiano() {
+  const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // C4, D4, E4, G4, A4, C5
+  if(pianoInterval) clearInterval(pianoInterval);
+  
+  // نغمة فورية أول ما تبدأ
+  playTone(notes[Math.floor(Math.random() * notes.length)], 3.0, 'triangle');
+
+  pianoInterval = setInterval(() => {
+    const randomNote = notes[Math.floor(Math.random() * notes.length)];
+    playTone(randomNote, 3.5, 'triangle');
+  }, 4000);
+}
+
+// أصوات الأزرار التفاعلية (واضحة وقوية)
+function playClickSound() {
+  playTone(587.33, 0.15, 'sine'); // D5
+}
+
+function playRevealSound() {
+  playTone(880.00, 0.4, 'sine'); // A5
+}
+
+// بناء الواجهة
+const moodsDiv = document.getElementById("moods");
+MOODS_LIST.forEach(m => {
+  const b = document.createElement("button");
+  b.className = "pill";
+  b.type = "button";
+  b.innerHTML = m[0] + " " + m[1];
+  b.onclick = () => {
+    playClickSound();
+    document.querySelectorAll(".pill").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
-    selectedMood=m[0];
-    selectedCustom="";
-    document.getElementById("custom").value="";
+    selectedMood = m[0];
+    selectedCustom = "";
+    document.getElementById("custom").value = "";
     document.getElementById("mainBtn").classList.add("on");
   };
   moodsDiv.appendChild(b);
 });
 
-const custom=document.getElementById("custom");
-custom.addEventListener("input",e=>{
-  const value=e.target.value.trim();
-  selectedCustom=value;
-  if(value.length>1){
-    document.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
-    selectedMood=detectMood(value);
+const custom = document.getElementById("custom");
+custom.addEventListener("input", e => {
+  const value = e.target.value.trim();
+  selectedCustom = value;
+  if(value.length > 1) {
+    document.querySelectorAll(".pill").forEach(x => x.classList.remove("active"));
+    selectedMood = null;
     document.getElementById("mainBtn").classList.add("on");
-  }else{
-    selectedMood=null;
+  } else {
     document.getElementById("mainBtn").classList.remove("on");
   }
 });
 
-function isSecretCode(text){
-  const clean = text.trim().replace(/\s+/g," ").toLowerCase();
-  return clean === "احمد وليد" || clean === "أحمد وليد";
-}
+function showAdvice() {
+  let mood = selectedMood || "متضايق";
+  const pool = LIB[mood] || EXTRA;
+  const item = pool[Math.floor(Math.random() * pool.length)];
 
-function showAhmedSecret(){
-  playReveal();
-  document.getElementById("result").innerHTML=`
-      <div class="secret-card">
-        <div class="secret-badge">
-          رسالة خاصة جداً 😂
-        </div>
-        <h3>
-          أحمد وليد ❤️
-        </h3>
-        <p>
-          يا مؤيد، أكيد أحمد هو الأول في قلبك... والثانية هي روعة! (وأسفين يا روعة مقدماً بس الحق حق 😂).
-          <br><br>
-          بعيداً عن المزح، أحمد وليد هو صاحب الفكرة ورا هذي السكينة، ومكانك عنده ما يعوضه حد.
-          <br><br>
-          <strong>
-            أنت صاحبي الغالي، وربي يدوم الديمومة بيننا.
-          </strong>
-        </p>
-        <div class="card-actions">
-          <button
-            class="mini-btn"
-            onclick="playClick(); this.innerText='❤️ وصلت النكتة'"
-          >
-            وصلتني وفطست ضحك
-          </button>
-          <button
-            class="mini-btn"
-            onclick="copyText('أحمد وليد الأول في قلب مؤيد... والثانية روعة 😂❤️')"
-          >
-            نسخ
-          </button>
-        </div>
+  document.getElementById("result").innerHTML = `
+    <div class="card">
+      <div class="label">${mood} • رسالة لقلبك</div>
+      <h3>${item.title}</h3>
+      <p>${item.text}</p>
+      <div class="src">— ${item.src}</div>
+      <div class="card-actions">
+        <button class="mini-btn" onclick="newAdvice()">كلمة ثانية ↻</button>
+        <button class="mini-btn" onclick="copyCard(this)">نسخ</button>
       </div>
-    `;
-
-  addRiverItem({
-    mood:"خاص",
-    title:"أحمد وليد وروعة 😂",
-    text:"أحمد الأول في قلب مؤيد والتانية روعة! (مع اعتذارنا لروعة مقدماً 😂)",
-    src:"أحمد وليد"
-  });
-
-  document.getElementById("result").scrollIntoView({behavior:"smooth"});
-}
-
-function copyText(text){
-  playClick();
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(()=>{}).catch(()=>{});
-  }
-}
-
-function escapeHTML(text){
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-function showAdvice(){
-  const customText=selectedCustom.trim();
-
-  if(isSecretCode(customText)){
-    showAhmedSecret();
-    return;
-  }
-
-  let mood=selectedMood || detectMood(customText) || "متضايق";
-  const item=getUniqueItem(mood,customText);
-
-  document.getElementById("result").innerHTML=`
-      <div class="card">
-        <div class="label">
-          ${escapeHTML(mood)}
-          • رسالة لقلبك
-        </div>
-        <h3>
-          ${escapeHTML(item.title)}
-        </h3>
-        <p>
-          ${escapeHTML(item.text)}
-        </p>
-        <div class="src">
-          — ${escapeHTML(item.src)}
-        </div>
-        <div class="card-actions">
-          <button
-            class="mini-btn"
-            onclick="newAdvice()"
-          >
-            كلمة ثانية ↻
-          </button>
-          <button
-            class="mini-btn"
-            onclick="copyCard(this)"
-          >
-            نسخ
-          </button>
-        </div>
-      </div>
-    `;
+    </div>
+  `;
 
   playReveal();
-
-  if(navigator.vibrate){
-    navigator.vibrate(25);
-  }
-
-  addRiverItem({
-    mood:mood,
-    title:item.title,
-    text:item.text,
-    src:item.src
-  });
-
-  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+  addRiverItem({ mood: mood, title: item.title, text: item.text, src: item.src });
+  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
 
-function newAdvice(){
-  playClick();
+function newAdvice() {
+  playClickSound();
   showAdvice();
 }
 
-function copyCard(button){
-  playClick();
-  const card=button.closest(".card");
+function copyCard(button) {
+  playClickSound();
+  const card = button.closest(".card");
   if(!card) return;
-  const text=card.innerText;
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(()=>{
-      const old=button.innerText;
-      button.innerText="تم ✓";
-      setTimeout(()=>{ button.innerText=old; },1300);
-    }).catch(()=>{});
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(card.innerText).then(() => {
+      button.innerText = "تم ✓";
+      setTimeout(() => { button.innerText = "نسخ"; }, 1300);
+    });
   }
 }
 
-document.getElementById("mainBtn").onclick=()=>{
-  if(!selectedMood && !selectedCustom.trim()){
-    return;
-  }
-  playClick();
+document.getElementById("mainBtn").onclick = () => {
+  playClickSound();
   showAdvice();
 };
 
-const river=document.getElementById("river");
-
-function addRiverItem(item){
-  const data={
-    mood:item.mood,
-    title:item.title,
-    text:item.text,
-    src:item.src
-  };
-  try{
-    const arr=JSON.parse(localStorage.getItem(RIVER_KEY) || "[]");
-    arr.push(data);
-    localStorage.setItem(RIVER_KEY, JSON.stringify(arr.slice(-40)));
-  }catch(e){}
+const river = document.getElementById("river");
+function addRiverItem(item) {
+  try {
+    const arr = JSON.parse(localStorage.getItem("sakina_river") || "[]");
+    arr.push(item);
+    localStorage.setItem("sakina_river", JSON.stringify(arr.slice(-20)));
+  } catch(e) {}
   renderRiver();
 }
 
-function buildRiverItem(item){
-  const r=document.createElement("div");
-  r.className="river-item";
-  r.innerHTML=`
-    <div style="font-size:10px; opacity:.4">
-      ${escapeHTML(item.mood || "سكينة")}
-    </div>
-    <b>
-      ${escapeHTML(item.title || "كلمة طيبة")}
-    </b>
-    <br>
-    ${escapeHTML(item.text || "")}
-    <div style="font-size:11px; opacity:.5">
-      — ${escapeHTML(item.src || "سكينة")}
-    </div>
-  `;
-  return r;
-}
-
-function renderRiver(){
-  while(river.children.length>1){
+function renderRiver() {
+  while(river.children.length > 1) {
     river.removeChild(river.lastChild);
   }
-  let items=[];
-  try{
-    items=JSON.parse(localStorage.getItem(RIVER_KEY) || "[]");
-  }catch(e){
-    items=[];
-  }
-  items.slice(-8).reverse().forEach(item=>{
-    river.appendChild(buildRiverItem(item));
+  let items = [];
+  try { items = JSON.parse(localStorage.getItem("sakina_river") || "[]"); } catch(e) {}
+  items.slice(-5).reverse().forEach(item => {
+    const r = document.createElement("div");
+    r.className = "river-item";
+    r.innerHTML = `<div style="font-size:10px; opacity:.4">${item.mood}</div><b>${item.title}</b><br>${item.text}<div style="font-size:11px; opacity:.5">— ${item.src}</div>`;
+    river.appendChild(r);
   });
 }
+renderRiver();
 
-function seedRiver(){
-  let items=[];
-  try{
-    items=JSON.parse(localStorage.getItem(RIVER_KEY) || "[]");
-  }catch(e){
-    items=[];
-  }
-  if(items.length===0){
-    const base=[
-      {
-        mood:"سكينة",
-        title:"اهدأ قليلاً",
-        text:"مش لازم تعرف كل شيء اليوم.",
-        src:"سكينة"
-      },
-      {
-        mood:"أمل",
-        title:"بداية جديدة",
-        text:"كل صباح يعطيك فرصة تبدأ من جديد.",
-        src:"سكينة"
-      },
-      {
-        mood:"قلب",
-        title:"خذ نفس",
-        text:"خلي اللحظة الحالية تكون أخف عليك.",
-        src:"سكينة"
-      },
-      {
-        mood:"صحبة",
-        title:"أحمد وليد",
-        text:"بعض الصحاب وجودهم وحده يطمن القلب.",
-        src:"أحمد وليد"
-      }
-    ];
-    localStorage.setItem(RIVER_KEY, JSON.stringify(base));
-  }
-  renderRiver();
-}
-
-const tap=document.getElementById("tap");
-const pianoAudio=document.getElementById("pianoAudio");
-const clickSound=document.getElementById("clickSound");
-const revealSound=document.getElementById("revealSound");
-
-let audioCtx = null;
-
-async function startAudio(){
-  if(audioStarted) return;
-  audioStarted=true;
+const tap = document.getElementById("tap");
+tap.addEventListener("click", () => {
+  audioStarted = true;
   tap.classList.add("hidden");
-
-  try {
-    // تضخيم إضافي عن طريق Web Audio API لرفع الصوت لأقصى طاقة ممكنة تجاوزاً لحدود المتصفح
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if(AudioContext){
-      audioCtx = new AudioContext();
-      const source = audioCtx.createMediaElementSource(pianoAudio);
-      const gainNode = audioCtx.createGain();
-      gainNode.gain.value = 2.5; // مضاعفة قوة الصوت 2.5 مرة
-      source.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-    }
-  } catch(e) {}
-
-  pianoAudio.volume = 1.0;
-  try{
-    await pianoAudio.play();
-  }catch(e){}
-  playClick();
-}
-
-tap.addEventListener("click", startAudio, {once:true});
-
-function playClick(){
-  try{
-    clickSound.currentTime=0;
-    clickSound.volume=0.4;
-    const p=clickSound.play();
-    if(p) p.catch(()=>{});
-  }catch(e){}
-}
-
-function playReveal(){
-  try{
-    revealSound.currentTime=0;
-    revealSound.volume=0.5;
-    const p=revealSound.play();
-    if(p) p.catch(()=>{});
-  }catch(e){}
-}
-
-seedRiver();
+  initSynthAudio();
+  startAmbientPiano();
+  playClickSound();
+}, { once: true });
 </script>
 
 </body>
