@@ -290,44 +290,26 @@ h1 i{ font-style:italic; }
 .tap{
   position:fixed;
   inset:0;
-  background:rgba(10,12,14,.92);
+  background:rgba(10,12,14,.96);
   backdrop-filter:blur(12px);
   z-index:100;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  gap:12px;
+  gap:16px;
   cursor:pointer;
   transition:opacity .6s ease, visibility .6s ease;
 }
 
-.tap h2{ font-size:25px; font-weight:400; }
-.tap p{ opacity:.4; font-size:14px; }
+.tap h2{ font-size:24px; font-weight:400; text-align:center; padding:0 20px; }
+.tap p{ opacity:.5; font-size:14px; }
 .tap.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
 
 .footer{
   margin-top:50px;
   opacity:.25;
   font-size:11px;
-}
-
-.secret-card{
-  margin-top:36px;
-  padding:30px 24px;
-  border:1px solid rgba(232,230,225,.12);
-  border-radius:20px;
-  background:rgba(232,230,225,.035);
-}
-
-.secret-badge{
-  display:inline-block;
-  padding:5px 14px;
-  border-radius:100px;
-  border:1px solid rgba(232,230,225,.12);
-  font-size:10px;
-  opacity:.45;
-  margin-bottom:15px;
 }
 </style>
 </head>
@@ -345,13 +327,14 @@ h1 i{ font-style:italic; }
   <span>لمؤيد • من أحمد وليد</span>
 </div>
 
+<!-- شاشة البداية الإجبارية لفتح قفل الصوت في المتصفح -->
 <div class="tap" id="tap">
   <div class="breath-wrap">
     <div class="breath"></div>
     <div class="breath-dot"></div>
   </div>
-  <h2>اضغط هنا لبدء السكينة والصوت</h2>
-  <p>أجواء بيانو مسموعة بوضوح وقوة قصوى لأجلك</p>
+  <h2>اضغط هنا لتفعيل الصوت ودخول السكينة</h2>
+  <p>اضغط في أي مكان بالشاشة لضمان سماع النغمات بوضوح تام</p>
 </div>
 
 <div class="container">
@@ -433,32 +416,34 @@ const EXTRA = [
 
 let selectedMood = null;
 let selectedCustom = "";
-let audioStarted = false;
 let audioCtx = null;
-let pianoInterval = null;
+let ambientTimer = null;
 
-// مولد أصوات البيانو والنغمات برمجياً بقوة عالية جداً ومسموعة مية المية
-function initSynthAudio() {
-  const AudioContext = window.AudioContext || window.webkitAudioContext;
-  if(!audioCtx) {
+// تهيئة نظام الصوت الإجباري عبر المتصفح
+function initAudio() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
   }
-  if(audioCtx.state === 'suspended') {
+  if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 }
 
-function playTone(freq, duration = 2.0, type = 'sine') {
+// دالة توليد نغمات قوية وواضحة جداً لا يمكن للمتصفح كتمها
+function playBeep(frequency = 440, duration = 0.25, type = 'sine') {
   try {
-    initSynthAudio();
+    initAudio();
+    if (!audioCtx) return;
+
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
 
     osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
-    // تضخيم الصوت ليكون واضح وقوي جداً
-    gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+    // رفع مستوى الصوت ليكون واضح مئة بالمئة
+    gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
 
     osc.connect(gain);
@@ -466,33 +451,30 @@ function playTone(freq, duration = 2.0, type = 'sine') {
 
     osc.start();
     osc.stop(audioCtx.currentTime + duration);
-  } catch(e) {}
+  } catch (e) {}
 }
 
-// تشغيل خلفية نغمات بيانو هادئة ومتسلسلة تلقائياً
-function startAmbientPiano() {
-  const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // C4, D4, E4, G4, A4, C5
-  if(pianoInterval) clearInterval(pianoInterval);
-  
-  // نغمة فورية أول ما تبدأ
-  playTone(notes[Math.floor(Math.random() * notes.length)], 3.0, 'triangle');
-
-  pianoInterval = setInterval(() => {
-    const randomNote = notes[Math.floor(Math.random() * notes.length)];
-    playTone(randomNote, 3.5, 'triangle');
-  }, 4000);
-}
-
-// أصوات الأزرار التفاعلية (واضحة وقوية)
+// نغمات تفاعلية للأزرار
 function playClickSound() {
-  playTone(587.33, 0.15, 'sine'); // D5
+  playBeep(659.25, 0.15, 'triangle'); // E5
 }
 
 function playRevealSound() {
-  playTone(880.00, 0.4, 'sine'); // A5
+  playBeep(880.00, 0.4, 'sine'); // A5
 }
 
-// بناء الواجهة
+// بدء نغمات هادئة في الخلفية بعد الضغط على الشاشة
+function startAmbientLoop() {
+  if (ambientTimer) clearInterval(ambientTimer);
+  const notes = [261.63, 329.63, 392.00, 523.25]; // درجات نغمات مريحة
+  
+  ambientTimer = setInterval(() => {
+    const randomNote = notes[Math.floor(Math.random() * notes.length)];
+    playBeep(randomNote, 2.0, 'sine');
+  }, 5000);
+}
+
+// بناء الأزرار (Moods)
 const moodsDiv = document.getElementById("moods");
 MOODS_LIST.forEach(m => {
   const b = document.createElement("button");
@@ -542,7 +524,7 @@ function showAdvice() {
     </div>
   `;
 
-  playReveal();
+  playRevealSound();
   addRiverItem({ mood: mood, title: item.title, text: item.text, src: item.src });
   document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
@@ -594,13 +576,13 @@ function renderRiver() {
 }
 renderRiver();
 
+// أول ضغطة تفتح قفل الصوت الإجباري في متصفح التليفون
 const tap = document.getElementById("tap");
 tap.addEventListener("click", () => {
-  audioStarted = true;
+  initAudio();
+  playBeep(523.25, 0.4, 'triangle'); // نغمة افتتاحية واضحة
+  startAmbientLoop();
   tap.classList.add("hidden");
-  initSynthAudio();
-  startAmbientPiano();
-  playClickSound();
 }, { once: true });
 </script>
 
